@@ -1,0 +1,216 @@
+<style>
+
+    .warehouse-address{
+        background-color: #3FB767;
+        color: #fff;
+        border-radius: 5px;
+        margin:10px;
+    }
+</style>
+<div class="container">
+    <div ng-init="vm.getWarehouses()" class="row user-warehouse-address" permission only="['user']">
+        <div class=" col-sm-3 col-md-3 warehouse-address" ng-repeat="(key, value) in vm._warehouses">
+            <b>{{value.text_address}}</b><br>
+            <b>{{vm._user.fullname}}</b><br>
+	    Suite # {{vm._user.suite_id}}<br>
+            {{value.address}}<br>
+            {{value.city}},{{value.state}} - {{value.postal_code}}<br>
+            {{value.country}} 
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<div class="row" permission only="['user']">
+    <style> 
+	.box-tab .nav-tabs {
+	    position: relative;
+	    bottom: -1px;
+	    margin: 0 auto;
+	    padding: 0;
+	    border-bottom: 3px solid #e5e6e7;
+	}
+    </style>
+    <uib-tabset active="activeTab" justified='false' template-url="module/common/tabset.html">
+	<uib-tab index="0" >
+	    <uib-tab-heading>
+		Packages <span class='badge'>{{vm._products.length}}</span>
+	    </uib-tab-heading>
+	    <div class="col-sm-12 padded" >
+		<div class="panel panel-primary">
+		    <div class="panel-heading">Packages in Warehouse</div>
+		    <div class="panel-body table-responsive" ng-init="vm.getUserPackagesNotConfirmed()">
+			<div  class="form-group col-sm-12">
+			    <label for="select_warehouse" class="col-sm-2 control-label">Select Warehouse</label>
+			    <div class="col-sm-2">
+				<select class="form-control" ng-model="vm._user.warehouse_id" ng-change="vm.getUserPackagesNotConfirmed()" ng-options="option.muid as option.store_name for option in vm._warehouses">
+				    <option value="">All</option>
+				</select>
+			    </div>
+			</div>
+			<table ng-table-dynamic="vm.currentPackages with vm.cols" class="table table-bordered table-striped table-condensed">
+			    <tbody><tr ng-repeat="row in $data">
+				    <td ng-repeat="col in $columns">
+					<div ng-if="col.field == 'muid'">
+					    <button ng-if="row.package_status_id != '4' && row.package_status_id != '12' && row.package_status_id != '16'" class="btn btn-primary" confirmed-click="vm.addNeedPhoto('{{row.muid}}')" ng-confirm-click="Do you need Photo for '{{row.package_id}}' package"><i class="fa fa-camera"></i></button>
+					    <span ng-if="row['photos']">
+						<button class="btn btn-primary" data-toggle="modal" data-target=".packageimages" ng-click="vm.selected_photos = row.photos;" >
+						    <i class="fa fa-photo"></i>
+						</button>
+					    </span>
+					</div>
+					<span ng-if="col.field !== 'muid'">
+					    <span ng-if="col.type != 'date'">
+						{{row[col.field]}}
+					    </span>
+					    <span ng-if="col.type == 'date'">
+						{{row[col.field]| formatdate :'medium'}}
+					    </span>
+					</span>
+				    </td>
+				</tr>
+			    </tbody>
+			</table>
+			<a href="#/packages/confirm_and_pay"><button class="btn btn-primary pull-right" data-toggle="modal"  data-target=".packagesnotcofirmed">
+				<i class="fa fa-money"></i>  Pay and Ship</button></a>
+		    </div>
+
+		</div>
+	    </div>
+	</uib-tab>
+	<uib-tab index="1">
+	    <uib-tab-heading ng-controller="OrderController as vm" ng-init="vm.getUserConfirmedOrders()">
+		Pending Orders
+		<span class='badge'>{{vm.pending_orders.length}}</span></uib-tab-heading>
+	    <div class="col-sm-12" ng-controller="OrderController as vm">
+		<div class="panel panel-primary">
+		    <div class="panel-heading">Pending Orders</div>
+		    <div class="panel-body table-responsive" ng-init="vm.getUserConfirmedOrders()">
+			<table ng-table-dynamic="vm.confirmedOrders with vm.cols" class="table table-bordered table-striped table-condensed">
+			    <tr ng-repeat="row in $data">
+
+				<td ng-repeat="col in $columns">
+
+				    <div ng-if="col.field == 'muid'">
+					<a href="#/order/pay/{{row['muid']}}" ng-if="row['order_status_id'] == '1'" class="btn btn-primary">
+					    <i class="fa fa-money" ></i>Repay</a>
+					<button ng-if="row['order_status_id'] == '1'" class="btn btn-primary" ng-click="vm.cancelOrder(row.muid, row.order_status_id)">Cancel</button>
+					<a href="#/orders/view/{{row.muid}}"><button class="btn btn-primary">
+						<i class="fa fa-eye"></i>
+					    </button>
+					</a>
+				    </div>
+				    <span ng-if="col.field !== 'muid'">
+					<span ng-if="col.type != 'date'">
+					    {{row[col.field]}}
+					</span>
+					<span ng-if="col.type == 'date'">
+					    {{row[col.field]| formatdate :'medium'}}
+					</span>
+				    </span>
+				</td>
+			    </tr>
+			</table>    
+		    </div>
+		</div>
+	    </div>
+	</uib-tab>
+	<uib-tab index="2" >
+	    <uib-tab-heading ng-controller="OrderController as vm" ng-init="vm.getUserShippedOrders()">
+		Shipped Orders
+		<span class='badge'>{{vm.shipped_orders.length}}</span></uib-tab-heading>
+	    <div class="col-sm-12" ng-controller="OrderController as vm">
+		<div class="panel panel-primary">
+		    <div class="panel-heading">Shipped Orders</div>
+		    <div class="panel-body table-responsive" ng-init="vm.getUserShippedOrders()">
+			<table ng-table-dynamic="vm.userShipment with vm.cols" class="table table-bordered table-striped table-condensed">
+			    <tr ng-repeat="row in $data">
+				<td ng-repeat="col in $columns" >
+				    <div ng-if="col.field == 'muid'">
+					<a href="#/orders/view/{{row.muid}}"><button class="btn btn-primary">
+						<i class="fa fa-eye"></i>
+					    </button>
+					</a>
+				    </div>
+				    <span ng-if="col.field !== 'muid'">
+					<span ng-if="col.type != 'date'">
+					    {{row[col.field]}}
+					</span>
+					<span ng-if="col.type == 'date'">
+					    {{row[col.field]| formatdate :'medium'}}
+					</span>
+				    </span>
+				</td>
+			    </tr>
+			</table>
+		    </div>
+		</div>
+	    </div>
+
+
+	</uib-tab>
+
+	<uib-tab index="3">
+            <uib-tab-heading ng-controller="AssistedPurchasesController as vm" ng-init="vm.getUserAssistedPurchase()">
+                Assisted Purchases <span class="badge">{{vm.totaluserAssistedPurchases}}</span>
+	    </uib-tab-heading>
+	    <div class="col-sm-12" ng-controller="AssistedPurchasesController as vm"  ng-init="vm.getUserAssistedPurchase()">
+
+		<div class="panel panel-primary" >
+                    <div class="panel-heading">Assisted Purchase </div>
+		    <div class="panel-body table-responsive">
+
+			<table ng-table-dynamic="vm.assistedPurchase with vm.cols_assistedPurchase" class="table table-bordered table-striped table-condensed">
+			    <tr ng-repeat="row in $data">
+				<td ng-repeat="col in $columns" ng-switch="col.type">
+				    <div ng-switch-when="value">
+					<input type="text" class="form-control" value="0" ng-model="row.value"/>
+				    </div>
+				    <div ng-switch-when="action" ng-if="row.purchase_value !== undefined && (row.purchase_status_id == 4 || row.purchase_status_id == 8 || row.purchase_status_id == 9)">
+					<!--					<input type="checkbox" value="1" name="is_pay[]"  ng-model="row.is_pay" checked="true" ng-click="vm.calculateSummary()"/>-->
+                                        <a href="#/packages/asst_confirm_and_pay/{{row.muid}}" class="btn btn-primary"> <i class="fa fa-money" ></i> Pay</a>
+
+				    </div>
+				    <div ng-switch-when="date">
+					{{row[col.field]| formatdate :'medium'}}
+				    </div>
+				    <div ng-switch-default>
+					{{row[col.field]}}
+				    </div>
+				</td>
+			    </tr>
+
+			</table>
+		    </div>
+		    <div ng-bind-html="vm.result">Redirecting to payment gateway please wait ....</div>
+		</div>
+	    </div>
+	</uib-tab>
+    </uib-tabset>
+
+    <div class="modal fade packageimages" tabindex="-1" role="dialog" aria-labelledby="packageimages">
+	<div class="modal-dialog modal-lg">
+	    <div class="modal-content" id="packageimages" tabindex="-1" role="dialog" aria-labelledby="packageimages">
+		<div class="modal-header">
+		    <button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		    <h3 class="modal-title" id="view">Package Photos</h3>
+		</div>
+		<div class="modal-body" >
+		    <div class="row">
+			<uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides" template-url="module/common/carousel.html">
+			    <uib-slide ng-repeat="photo in vm.selected_photos" index="$index">
+				<img ng-src="{{photo.fullpath}}" style="margin:auto;">
+				<div class="carousel-caption">
+				    <h4>Slide {{$index + 1}}</h4>
+				</div>
+			    </uib-slide>
+			</uib-carousel>
+		    </div>
+		    <div class="modal-footer">
+			<button class="btn btn-default" data-dismiss="modal">Close</button>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </div>
+</div>

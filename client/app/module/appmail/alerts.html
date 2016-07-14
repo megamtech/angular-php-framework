@@ -1,0 +1,39 @@
+<form class="form-horizontal" novalidate="novalidate" permission only="['manager','admin','superadmin']">
+    <div class="col-sm-7 col-sm-offset-2">
+	<div class="form-group">
+                <label class="col-lg-2 control-label">To:</label>
+                <div class="col-lg-8" >
+		    <label class="control-label">All Customers</label>
+                </div>
+		
+            </div>
+	<div  class="form-group col-sm-12">
+	    <label for="alert" class="col-sm-2 control-label">Alert</label>
+	    <div class="col-sm-6">
+		<input type="text" class="form-control" id="alert" name="alert" ng-model="vm.alert">
+	    </div>
+	</div>
+	<div  class="form-group col-sm-12">
+	    <label for="alert" class="col-sm-2 control-label">Description</label>
+	    <div class="col-sm-6">
+		<textarea class="form-control" ng-model='vm.desc'>
+		</textarea>
+	    </div>
+	</div>
+	<div  class="form-group col-sm-12">
+	    <label for="alert_severity" class="col-sm-2 control-label">Alert Severity</label>
+	    <div class="col-sm-6">
+		<select class="form-control" ng-model="vm.alert_severity">
+		    <option>Warning</option>
+		    <option>Critical</option>
+		    <option>Info</option>
+		</select>
+	    </div>
+	</div>
+	<div class="col-sm-offset-6">
+	    <a href="#/alerts/list" class='btn btn-warning'>Cancel</a>
+	    <button class='btn btn-primary' ng-click='vm.sendAlerts()'>Send</button>
+	    
+	</div>
+    </div>
+</form>

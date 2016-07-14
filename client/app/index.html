@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="1grandtrunk" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="1grandtrunk" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="1grandtrunk" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="1grandtrunk" class="no-js"> <!--<![endif]-->
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title ng-controller="TemplateController as vm" ng-bind="vm.getTitle()"></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="dist/css/1grandtrunk.min.css">
+
+        <style type="text/css">
+            [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+                display: none !important;
+            }
+	    .footer_menu ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+	    }
+	    .iv-layout.bottom-footer{
+		background: #274364;
+		font-family: 'Open Sans', sans-serif;
+		font-size: 13px;
+		line-height: 1.25;
+		color: #fff;
+		padding: 15px 0;
+		z-index: 12000;
+		position: relative;
+		-webkit-transition: all 0.8s cubic-bezier(0.68, 0, 0.29, 1);
+		-moz-transition: all 0.8s cubic-bezier(0.68, 0, 0.29, 1);
+		transition: all 0.8s cubic-bezier(0.68, 0, 0.29, 1);
+	    }
+            .preloader {
+                padding: 25%;
+                min-height: 100%;
+                background: url('img/preloader.gif') no-repeat 50% 50% transparent;
+            }
+            html, body {
+                height: 100%;
+            }
+            .wrapper {
+                min-height: 100%;
+                height: auto !important;
+                height: 100%;
+                margin: 0 auto 50px;  /*the bottom margin is the negative value of the footer's height */
+            }
+            .footer, .push {
+                /*height: 50px;  .push must be the same height as .footer */
+                text-align: center;
+            }
+            [ng-click],
+            [data-ng-click],
+            [x-ng-click] {
+                cursor: pointer;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="loader preloader" ></div>
+
+        <div  ng-cloak ng-controller="TemplateController as vm">
+            <nav   class="navbar navbar-default">
+
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <a class="navbar-brand" href="#"><img src="../app/img/logo/dark-logo.png" style="width: 100px; height: 25px;" ></a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-if="vm.isUserAuthenticated()">
+
+                        <ul class="nav navbar-nav" >
+
+                            <!--<li><a href="#/login">login</a></li>-->
+                            <!--<li><a href="#/home">home</a></li>-->
+                            <!--<li class="dropdown "> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Dropdown <span class="caret"></span></a> <ul class="dropdown-menu"> <li><a href="#">Action</a></li> <li><a href="#">Another action</a></li> <li><a href="#">Something else here</a></li> <li role="separator" class="divider"></li> <li><a href="#">Separated link</a></li> <li role="separator" class="divider"></li> <li><a href="#">One more separated link</a></li> </ul> </li>-->
+                            <li class="dropdown" permission only="['admin','superadmin']">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#/master/category/viewall">Category</a></li>
+                                    <li permission only="['superadmin']"><a href="#/master/purchasedat/viewall">Purchased At</a></li>
+                                    <li permission only="['superadmin']"><a href="#/master/totals/viewall">Totals</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <!--                                    <li><a href="#/master/taxclass/viewall">Tax Class</a></li>
+                                                                        <li><a href="#/master/taxrates/viewall">Tax Rates</a></li>
+                                                                        <li role="separator" class="divider"></li>
+                                                                        <li><a href="#/master/zones/viewall">Zones</a></li>
+                                                                        <li><a href="#/master/country/viewall">Country</a></li>
+                                                                        <li><a href="#/master/geozones/viewall">Geo Zones</a></li>
+                                                                        <li role="separator" class="divider"></li>
+                                                                        <li><a href="#/master/coupon/viewall">Coupon</a></li>
+                                                                        <li role="separator" class="divider"></li>
+                                                                        <li><a href="#/master/orderstatus/viewall">Order Status</a></li>
+                                                                        <li><a href="#/master/stockstatus/viewall">Stock Status</a></li>
+                                                                        <li role="separator" class="divider"></li>
+                                                                        <li><a href="#/master/warehouse/viewall">Warehouse Location</a></li>
+                                                                        <li role="separator" class="divider"></li>-->
+                                    <li><a href="#/getuserslist">Customer List</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#/getadminlist">Admin List</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#/package/list" permission only="['manager','admin','superadmin', 'purchasemanager']">Packages</a></li>
+                            <li><a href="#/home" permission only="['user']">Home</a></li>
+			    <li><a href="#/assisted_purchase/create" permission only="['user']">Assisted Purchase</a></li>
+                            <li><a href="#/assisted_purchase/list" permission only="['manager','admin','superadmin', 'purchasemanager']">Assisted Purchase List</a></li>
+                            <li><a href="#/orders/list" permission only="['manager','admin','superadmin', 'purchasemanager']">Order List</a></li>
+                            <li><a href="#/home" permission only="['user']">Dashboard</a></li>
+
+                            <!--<li><a href="#/admin_dashboard" permission only="['manager','admin','superadmin']">Dashboard</a>-->
+                            </li>
+
+                            <!--<li><a href="#/register">Register</a></li>-->
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown" ng-include="'module/appmail/messagelist.html'" ng-controller="MessageController as vm" ng-init='vm.getRecentUnreadMessages(5)'>
+				<!-- /.dropdown-messages -->
+                            </li>
+                            <li class="dropdown " ng-include="'module/appmail/alertslist.html'" ng-controller="AlertController as vm" ng-init='vm.getRecentUnreadAlerts(5)'>
+
+                                <!-- /.dropdown-alerts -->
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Hello {{vm.getUserName()}} <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#/settings/preferences">Preferences</a></li>
+				    <li><a href="#/getuserhistory" permission only="['user']">My Account</a></li>
+                                    <!--<li><a href="#/home" permission only="['manager','admin','superadmin', 'user']">Dashboard</a></li>-->
+                                    <li class="divider"></li>
+                                    <li ng-controller="UserController as vm"><a ng-click="vm.logout()">Logout</a></li>
+                                </ul>
+                        </ul>
+
+                    </div>
+                </div>
+
+            </nav>
+        </div>
+
+
+
+    <toast></toast>
+    <div class="wrapper">
+        <div ng-cloak class="container-fluid " ui-view></div>
+        <div class="push"></div>
+    </div>
+
+    <footer class="footer" ng-cloak>
+
+
+	<div class="row">
+	    <div class="col-sm-6 col-md-2 widget-col widget-col-1">
+		<div id="nav_menu-2" class="widget widget_nav_menu">
+		    <div class="footer_menu">
+			<ul id="menu-footer-widget-left" class="menu">
+			    <li id="menu-item-29" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-29"><a href="http://www.1grandtrunk.com/">1GrandTrunk Reviews</a></li>
+			    <li id="menu-item-30" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-30"><a href="http://www.1grandtrunk.com/#howitworks">How it works</a></li>
+			    <li id="menu-item-31" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-31"><a href="http://www.1grandtrunk.com/#pricing">Our services &amp; prices</a></li>
+			    <li id="menu-item-747" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-747"><a href="http://1grandtrunk.com">Assisted Purchase</a></li>
+			</ul>
+		    </div>
+		</div>
+	    </div>
+	    <div class="col-sm-6 col-md-4 widget-col widget-col-3">
+		<div id="nav_menu-4" class="widget widget_nav_menu">
+		    <div class="footer_menu">
+			<ul id="menu-footer-widget-right" class="menu">
+			    <li id="menu-item-507" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-507"><a href="http://www.1GrandTrunk.com/privacy-policy/">Privacy Policy</a></li>
+			    <li id="menu-item-50" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-50"><a href="/Terms-And-Conditions">Terms &amp; Conditions</a></li>
+			    <li id="menu-item-748" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-748"><a href="http://www.1GrandTrunk.com/contact-page/">Become a Partner</a></li>
+			    <li id="menu-item-749" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-749"><a href="http://1grandtrunk.com/contact">News and Press</a></li>
+			    <li id="menu-item-746" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-746"><a href="http://www.1GrandTrunk.com/site-map/">Site Map</a></li>
+			</ul>
+		    </div>
+		</div>					
+	    </div>
+	    <div class="col-sm-6 col-md-4 widget-col widget-col-4">
+		<div id="text-2" class="widget widget_text">			<div class="textwidget"><h4>Shop online in USA and <br>
+			    Deliver to your home </h4>
+			<!--			<a href="http://www.1grandtrunk.com/app/#/login" class="ivan-button  outline round-square   with-text light-bg">
+						    <span class="text-btn">Sign Up</span>
+						</a>-->
+		    </div>
+		</div>
+	    </div>
+
+	</div>
+	<div class="iv-layout bottom-footer two-columns ">
+	    <div class="container">
+		<div class="row">
+		    <div class="col-xs-10 col-sm-8 col-md-6 bottom-footer-left-area ">
+			<div class="iv-module custom-text ">
+			    <div style="text-align: left;">
+				All rights reserved. </div>
+			</div>
+		    </div>
+		    <div class="col-xs-2 col-sm-4 col-md-6 bottom-footer-right-area">
+			<div class="iv-module social-icons hidden-xs">
+			    <div class="centered">
+				<a href="https://www.facebook.com/1GrandTrunk-1727354140866119/" target="_blank"><i class="fa fw fa-facebook"></i></a>
+				<a href="https://twitter.com/1GrandTrunk" target="_blank"><i class="fa fw fa-twitter"></i></a>
+				<a href="https://in.pinterest.com/1grandtrunk/" target="_blank"><i class="fa fw fa-pinterest"></i></a>
+			    </div>
+			</div>
+		    </div>
+		</div>					
+	    </div>
+	</div>
+    </footer>
+
+
+
+
+    <script src="dist/js/1grandtrunk.lib.min.js"></script>
+    <!--[if lte IE 9]>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/Base64/0.3.0/base64.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.2.0/es5-shim.js"></script>
+        <script>
+          document.createElement('ui-select');
+          document.createElement('ui-select-match');
+          document.createElement('ui-select-choices');
+        </script>
+
+    <![endif]-->
+
+    <script src="dist/js/1grandtrunk.min.js"></script>
+
+    <script>
+                                        $(function () {
+                                        $('.loader').remove();
+                                        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+    "name": "OneGrandTrunk",
+    "require": {
+        "altorouter/altorouter": "1.1.0",
+        "firebase/php-jwt": "3.0.0",
+        "caseyamcl/Configula": "~2.2",
+        "wixel/gump": "dev-master",
+        "easypost/easypost-php": "~3.0",
+        "verot/class.upload.php": "dev-master",
+        "phpmailer/phpmailer": "~5.2",
+        "dompdf/dompdf": "0.7.x@beta",
+        "endroid/qrcode": "~1.6.5",
+        "setasign/fpdf": "1.8.1",
+        "mongodb/mongodb": "^1.0.0",
+        "mobiledetect/mobiledetectlib": "^2.8"
+    }
+}

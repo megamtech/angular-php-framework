@@ -1,0 +1,76 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : Apr 15, 2016, 3:21:46 PM
+    Author     : gmsundar
+*/
+.switch {
+    background: #30547F;
+    text-transform: uppercase;
+}
+.switch .off {
+    color: #ffffff;
+}
+.navbar {
+    border-radius: 0px !important;
+}
+.navbar-default,
+.navbar-nav > li > a,
+.navbar-default .navbar-text,
+.navbar-default .navbar-brand,
+.footer,
+.table-bordered > thead > tr > th,
+.panel-primary > .panel-heading {
+    background-color: #30547F;
+    color: #ffffff !important;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:focus,
+.navbar-default .navbar-nav > .open > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li:hover,
+.user-warehouse-address > div {
+    background-color: #3FB767;
+    color: #ffffff;
+}
+.btn-primary {
+    background-color: #3FB767;
+    color: #ffffff;
+    border-color: #2b7e47;
+}
+.btn-primary:hover {
+    background-color: #2b7e47;
+    color: #ffffff;
+    border-color: #184527;
+}
+.btn-primary:active {
+    background-color: #184527;
+    color: #ffffff;
+    border-color: #040c07;
+}
+.ng-table th.sortable .sort-indicator:before,
+.ng-table th.sortable.sort-desc .sort-indicator:after {
+    background-color: #3FB767 !important;
+    border-top: 4px solid #3FB767;
+}
+.footer {
+    vertical-align: middle;
+}
+.user-warehouse-address {
+    text-align: center;
+}
+.navbar {
+    margin-bottom: 0px!important;
+}
+.h1,
+.h2,
+.h3,
+h1,
+h2,
+h3 {
+    margin-top: 5px;
+}
