@@ -38,42 +38,13 @@ class mUsers extends model {
         return $this->db->create();
 
     }
-
-    function savePreferences($data, $id) {
-        $this->db->column = $data;
-        $this->db->table = $this->table;
-        return $this->db->addWhereCondition(array('_id' => $id))->update();
-
-    }
-
-    function getPreferences($id) {
-        $this->db->table = $this->table;
-        $data = $this->db->addWhereCondition(array('_id' => $id))->read();
-        return $data[0]['preferences'];
-
-    }
-
-    function getUserSuiteId() {
-        return $this->db->getNextSequence('user_suite_id');
-
-    }
-
     function validate($username, $password) {
         $this->db->table = $this->table;
-//Status 1 = Active User;
         return $this->db->addWhereCondition(array('username' => $username, 'password' => $password,
                     'status' => 1))->read();
 
     }
 
-    function getUserAddresses($user_id) {
-        $this->db->table = $this->table;
-//Status 1 = Active User;
-        $data = $this->db->addWhereCondition(array('_id' => $user_id,
-                    'status' => 1))->read();
-        return $data[0]['addresses'];
-
-    }
 
     function updateUser($data, $id) {
         $this->db->table = $this->table;

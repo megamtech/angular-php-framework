@@ -27,7 +27,7 @@ class cUsers extends controller {
     );
     private $user_statuses = array('Active' => 1, 'Disabled' => 0, 'Suspended' => 1);
     public $user_roles = array('Default_User' => 1, 'Manager' => 2, 'Admin' => 3,
-        'SuperAdmin' => -1, 'PurchaseManager' => 4);
+        'SuperAdmin' => -1);
     private $validation_errors = array();
 
     function createUser($default_data = array()) {
@@ -38,7 +38,6 @@ class cUsers extends controller {
         if ($this->validation->is_valid === true) {
             $does_user_exist = $this->mUsers->getUserDetails(array('username' => $data['email']));
             if (is_array($does_user_exist[0]) == false) {
-                $dbdata['suite_id'] = $this->mUsers->getUserSuiteId();
                 $dbdata['password'] = $this->encryptPassword($data['password']);
                 $dbdata['username'] = $data['email'];
                 $dbdata['email'] = $data['email'];
@@ -50,23 +49,6 @@ class cUsers extends controller {
                 $dbdata['company'] = $data['company'];
                 $dbdata['phone'] = $data['phone'];
                 $dbdata['date_added'] = $this->getCurrentTime();
-
-//                if ($data['address'] || $data['city'] || $data['state'] || $data['country'] || $data['postal_code']) {
-//                    $address['firstname'] = $data['first_name'];
-//                    $address['lastname'] = $data['last_name'];
-//                    $address['company'] = $data['company'];
-//                    $address['address'] = $data['address'];
-//                    $address['city'] = $data['city'];
-//                    $address['state'] = $data['state'];
-//                    $address['country'] = $data['country'];
-//                    $address['zip'] = $data['postal_code'];
-//                    $address['phone'] = $data['phone'];
-//
-//                    $this->load->extendController('easypost');
-//                    $address['address_id'] = $this->cEasypost->addAddress($address);
-//
-//                    $dbdata['addresses'][$address['address_id']] = $address;
-//                }
 
                 $result['status'] = 'success';
                 $result = $this->createSuccessResponse($this->mUsers->createUser($dbdata));
@@ -84,8 +66,6 @@ class cUsers extends controller {
         $this->load->model('users');
         $this->load->model('warehouse_location');
         $data = $this->request->raw_data;
-//        $this->validation->validate($data, array('email', 'warehouse_name', 'role_id'), $this->columns);
-//        if ($this->validation->is_valid === true) {
         $role_name = array_search($data['role_id'], $this->user_roles);
         $data['role_id'] = (int) $data['role_id'];
         $data['username'] = $data['email'];
@@ -93,58 +73,11 @@ class cUsers extends controller {
         $data['status'] = 1;
         $data['role_name'] = $role_name;
         $data['date_added'] = $this->getCurrentTime();
-        $wareHouseDetails = $this->mWarehouseLocation->getWareHouseLocations(array(
-            '_id' => $data['warehouse_id']));
-        $data['warehouse_name'] = $wareHouseDetails[0]['store_name'];
         $result = $this->mUsers->addAdminUser($data);
         $this->response->outputJson($result);
-//}
 
     }
 
-    function createCustomerAddress() {
-        $this->load->model('users');
-        $data = $this->request->raw_data;
-
-        //Set if Customer add 1st Address set as default
-        $addresses_check = $this->mUsers->getUserAddresses($this->request->auth['user']['muid']);
-        if ($addresses_check != '') {
-            $address['is_default'] = false;
-        } else {
-            $address['is_default'] = true;
-        }
-        $this->validation->validate($data,
-                array('city', 'state', 'country', 'zip'), $this->columns);
-        if ($this->validation->is_valid === true) {
-            $addresses = $this->mUsers->getUserAddresses($data['muid']);
-            $address['firstname'] = $data['first_name'];
-            $address['lastname'] = $data['last_name'];
-            $address['company'] = $data['company'];
-            $address['street1'] = $data['address'];
-            $address['city'] = $data['city'];
-            $address['state'] = $data['state'];
-            $address['country'] = $data['country'];
-            $address['zip'] = $data['zip'];
-            $address['phone'] = $data['phone'];
-            $this->load->extendController('easypost');
-            $address['address_id'] = $this->cEasypost->getAddressId($address);
-            $addresses[$address['address_id']] = $address;
-            $dbdata['addresses'] = $addresses;
-            $this->mUsers->updateUser($dbdata, $data['muid']);
-            $result = $this->createSuccessResponse($dbdata);
-        } else {
-            $result = $this->createErrorResponse($this->validation->is_valid);
-        }
-        $this->response->outputJson($result);
-
-    }
-
-    function getAddresses() {
-        $this->load->model('users');
-        $result = $this->mUsers->getUserAddresses($this->request->raw_data['muid']);
-        $this->response->outputJson($result);
-
-    }
 
     function changePassword() {
         $this->load->model('users');
@@ -206,12 +139,6 @@ class cUsers extends controller {
             $data['fullname'] = $data['firstname'] . ' ' . $data['lastname'];
             $data['email'] = $result[0]['email'];
 
-            if ($result[0]['role_id'] > 1) {
-                $data['warehouse_name'] = $result[0]['warehouse_name'];
-                $data['warehouse_id'] = $result[0]['warehouse_id'];
-            } else {
-                $data['suite_id'] = $result[0]['suite_id'];
-            }
             $data['role_id'] = $result[0]['role_id'];
             $data['is_admin'] = $result[0]['is_admin'];
 
@@ -250,7 +177,6 @@ class cUsers extends controller {
         $data['lastname'] = $result[0]['lastname'];
         $data['username'] = $result[0]['username'];
         $data['email'] = $result[0]['email'];
-        $data['suite_id'] = $result[0]['suite_id'];
         $data['role_id'] = $result[0]['role_id'];
         $data['is_admin'] = $result[0]['is_admin'];
 
@@ -264,9 +190,6 @@ class cUsers extends controller {
 
     }
 
-    function decryptPassword() {
-        
-    }
 
     function getUsers() {
         $this->load->model('users');
@@ -275,13 +198,6 @@ class cUsers extends controller {
 
     }
 
-    function getCustomerDetails() {
-        $this->load->model('users');
-        $filter_condition = $this->request->raw_data['filter']['muid'];
-        $result = $this->mUsers->getUsers(array('_id' => $filter_condition));
-        $this->response->outputJson($this->createSuccessResponse($result));
-
-    }
 
     function getUserList() {
         $data = $this->request->raw_data;
@@ -302,54 +218,6 @@ class cUsers extends controller {
         $this->load->model('users');
         $result['result'] = $this->mUsers->getUsers($filter_condition);
         $this->response->outputJson($result);
-
-    }
-
-    function savePreferences() {
-        $this->load->model('users');
-        $data = $this->request->raw_data;
-        //Do validation for the data
-        //$data['status'] = (int) $data['status'];
-        $this->validation->validate($data,
-                array(
-            'discard_boxes_status', 'photo_status'), $this->columns);
-        if ($this->validation->is_valid === true) {
-            $dbdata['preferences']['photo_status'] = (int) $data['photo_status'];
-            $dbdata['preferences']['discard_boxes_status'] = (int) $data['discard_boxes_status'];
-            $dbdata['preferences']['shipping_carrier'] = $data['shipping_carrier'];
-            $user_id = $data['muid'];
-            unset($data['muid']);
-            $result = $this->createSuccessResponse($this->mUsers->savePreferences($dbdata,
-                            $user_id));
-        } else {
-            $result = $this->createErrorResponse($this->validation->is_valid);
-        }
-        $this->response->outputJson($result);
-
-    }
-
-    function saveDefaultAddress() {
-        $this->load->model('users');
-        $data = $this->request->raw_data;
-        $addresses = $this->mUsers->getUserAddresses($this->request->auth['user']['muid']);
-        foreach ($addresses as $key => $value) {
-            if ($data['address_id'] == $key) {
-                $addresses[$key]['is_default'] = true;
-            } else {
-                $addresses[$key]['is_default'] = false;
-            }
-        }
-        $this->response->outputJson($this->createSuccessResponse($this->mUsers->updateUser(array(
-                            'addresses' => $addresses),
-                                $this->request->auth['user']['muid'])));
-        //update the user with the user_id
-
-    }
-
-    function getPreferences() {
-        $user_id = $this->request->raw_data['muid'];
-        $this->load->model('users');
-        $this->response->outputJson($this->createSuccessResponse($this->mUsers->getPreferences($user_id)));
 
     }
 
@@ -375,33 +243,7 @@ class cUsers extends controller {
 
     }
 
-    function deleteUserAddresses() {
-        $this->load->model('users');
-        //Query for user record
-        $current_address_selected_id = $this->request->raw_data['address_id'];
-        $muid = $this->request->auth['user']['muid'];
-        $userDetails = $this->mUsers->getUserDetails(array('_id' => $muid));
-        $addresses = $userDetails[0]['addresses'];
-        $deleted_addresses = (array) $userDetails[0]['deleted_addresses'];
-        $deleted_addresses[] = $addresses[$current_address_selected_id];
-        unset($addresses[$current_address_selected_id]);
-        $columns['addresses'] = $addresses;
-        $columns['deleted_addresses'] = $deleted_addresses;
-        $this->response->outputJson($this->createSuccessResponse($this->mUsers->updateUser($columns,
-                                $muid)));
 
-    }
-
-    function validateFacebook() {
-    print_r($this->request->raw_data);
-    $provider='facebook';
     
-    //$this->socialLogin($provider);
-    exit;    
-    }
-    function socialLogin(){
-        $hybridAuth=new Hybrid_Auth();
-//        $adapter=$hybridAuth->authenticate
-    }
 
 }

@@ -34,24 +34,6 @@ class cHistory extends controller {
 
     }
 
-    function getOrderHistoryByOrderId() {
-        $this->load->model('history');
-        $this->response->outputJson($this->createSuccessResponse($this->mHistory->getHistory(array(
-                            'ref_id' => $this->request->raw_data['order_id'], 'type' => 'order'))));
-
-    }
-    function getAPHistoryByAPId() {
-        $this->load->model('history');
-        $this->response->outputJson($this->createSuccessResponse($this->mHistory->getHistory(array(
-                            'ref_id' => $this->request->raw_data['assisted_purchase_id'], 'type' => 'assisted_purchase'))));
-
-    }
-    function getPackageHistoryByPackageId() {
-        $this->load->model('history');
-        $this->response->outputJson($this->createSuccessResponse($this->mHistory->getHistory(array(
-                            'ref_id' => $this->request->raw_data['package_id'], 'type' => 'packages'))));
-
-    }
     
     function getHistoryByUser() {
         $this->load->model('history');

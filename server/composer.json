@@ -1,11 +1,9 @@
 {
-    "name": "OneGrandTrunk",
+    "name": "MegamFramework",
     "require": {
         "altorouter/altorouter": "1.1.0",
         "firebase/php-jwt": "3.0.0",
-        "caseyamcl/Configula": "~2.2",
         "wixel/gump": "dev-master",
-        "easypost/easypost-php": "~3.0",
         "verot/class.upload.php": "dev-master",
         "phpmailer/phpmailer": "~5.2",
         "dompdf/dompdf": "0.7.x@beta",
