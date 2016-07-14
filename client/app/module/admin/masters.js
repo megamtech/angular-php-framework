@@ -2,7 +2,7 @@
 
     'use strict';
     angular
-            .module('1grandtrunk')
+            .module('megamframework')
             .controller('MasterController', MasterController);
     function MasterController($state, NgTableParams, APIService, UIService, UserService) {
 
@@ -62,7 +62,6 @@
 
 
             APIService.post(vm._mastername, 'add', vm._masterdata).success(function () {
-//                $state.go('#/master/' + vm._mastername + '/viewall');
                 UIService.notify(vm._mastername + 'added Successfully', 'success');
             }).error(function () {
                 UIService.notify(vm._mastername + 'fields has some error', 'error');

@@ -1,8 +1,7 @@
 {
-  "name": "angular-seed",
+  "name": "Megam AngularJS Framework ",
   "description": "A starter project for AngularJS",
-  "version": "0.0.0",
-  "homepage": "https://github.com/angular/angular-seed",
+  "version": "0.0.1",
   "license": "MIT",
   "private": true,
   "dependencies": {
@@ -22,9 +21,7 @@
     "angular-ui-switch": "0.1.1",
     "angular-permission": "2.2.4",
     "ngstorage": "0.3.10",
-    "angularjs-scroll-glue": "0.0.1",
     "ng-file-upload": "12.0.4",
-    "c3-angular": "1.2.0",
     "angular-auto-validate": "1.19.3",
     "textAngular": "1.5.1",
     "angular-moment": "0.10.3",

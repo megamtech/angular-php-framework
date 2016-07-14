@@ -1,10 +1,10 @@
 {
-  "name": "1grandtrunk",
+  "name": "megamframework",
   "private": true,
   "version": "0.8.0",
-  "description": "Virtual address ",
+  "description": "MegamFramework - seed project for AngularJs projects with PHP as frontend",
   "license": "MIT",
-  "copyright_to": "One Grand Trunk (http://1grandtrunk.com)",
+  "copyright_to": "",
   "developed_by": "Megam Technologies LLP",
   "developer_site": "http://megamtech.com",
   "developer_contact": "support@megamtech.com",

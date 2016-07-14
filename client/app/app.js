@@ -3,8 +3,8 @@
 (function () {
 
     'use strict';
-    var onegrandtrunk = angular
-            .module('1grandtrunk', [
+    var megamframework = angular
+            .module('megamframework', [
                 'ui.router',
                 'satellizer',
                 'permission',
