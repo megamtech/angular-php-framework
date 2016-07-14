@@ -17,10 +17,10 @@ define('AppThirdParty', 'thirdparty' . DIRECTORY_SEPARATOR);
 define('AppTemplates', 'templates' . DIRECTORY_SEPARATOR);
 
 // HTTP With Trailing slash
-define('HTTP_SERVER', 'http://1grandtrunk.com/api/');
+define('HTTP_SERVER', 'http://demo.megamtech.com/api/');
 
 // HTTPS
-define('HTTPS_SERVER', 'https://1grandtrunk.com/api/');
+define('HTTPS_SERVER', 'https://demo.megamtech.com/api/');
 
 define('BASE_PATH', '/api/');
 
@@ -28,20 +28,20 @@ define('BASE_PATH', '/api/');
 define('DB_DRIVER', 'mongo');
 define('DB_PORT', '27017');
 
-define('DB_HOSTNAME', '10.130.32.165');
-define('DB_USERNAME', 'root');
+define('DB_HOSTNAME', 'dbip');
+define('DB_USERNAME', 'dbusername');
 define('DB_PASSWORD', '');
-define('DB_DATABASE', 'onegrandtrunk');
+define('DB_DATABASE', 'databasename');
 
 //SMTP details
 define('SMTP_HOST', 'mail.smtp2go.com');
-define('SMTP_PORT', '2525');
-define('SMTP_USER', 'meenakshi.sun20@gmail.com');
-define('SMTP_PASS', '08Ojw7kcgHSa');
+define('SMTP_PORT', 'smtp_port');
+define('SMTP_USER', 'smtp_user_name');
+define('SMTP_PASS', 'smtp_user_password');
 define('SMTP_IS_TLS', true);
 
-define('COMPANY_NAME', 'OneGrandTrunk');
-define('COMPANY_LOGO', 'OneGrandTrunk');
-define('COMPANY_WEBSITE', 'OneGrandTrunk');
+define('COMPANY_NAME', 'Your Company Name');
+define('COMPANY_LOGO', 'Company Logo');
+define('COMPANY_WEBSITE', 'Your Website');
 
 

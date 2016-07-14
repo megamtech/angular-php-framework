@@ -11,7 +11,7 @@
         $interval(function () {
             vm.refreshsession()
         }, 3000);
-        console.log('TEst');
+        console.log('Test');
         vm.refreshsession = function () {
             $http.get('/refreshsession')
                     .then(function (data) {
