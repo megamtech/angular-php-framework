@@ -1,4 +1,4 @@
-angular.module('1grandtrunk').service('APIService', function ($auth, API_URLs, $http, UIService, $state, $sessionStorage, $q, Upload) {
+angular.module('megamapp').service('APIService', function ($auth, API_URLs, $http, UIService, $state, $sessionStorage, $q, Upload) {
     this.response = {};
     this.is_error = false;
 

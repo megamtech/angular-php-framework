@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-            .module('1grandtrunk')
+            .module('megamapp')
             .controller('ScheduleController', ScheduleController);
 
 

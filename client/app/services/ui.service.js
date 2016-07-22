@@ -1,4 +1,4 @@
-angular.module('1grandtrunk').service('UIService', function (ngToast, $uibModal, $uibModalStack) {
+angular.module('megamapp').service('UIService', function (ngToast, $uibModal, $uibModalStack) {
     var service = this;
     service.currentModal = '';
     service.notify = function (content, type, dismiss, dismissOnTimeout, timeout) {

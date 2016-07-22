@@ -2,11 +2,11 @@
 
     'use strict';
     angular
-            .module('megamframework')
+            .module('megamapp')
             .controller('TemplateController', TemplateController);
     function TemplateController(UIService, UserService, $state) {
         var vm = this;
-        vm.appname = ' - Megam Framework'
+        vm.appname = ' - Megam Framework';
 
         vm.isUserAuthenticated = function () {
             if (UserService.isUserAuthenticated()) {

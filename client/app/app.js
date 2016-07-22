@@ -3,8 +3,8 @@
 (function () {
 
     'use strict';
-    var megamframework = angular
-            .module('megamframework', [
+    var megamapp = angular
+            .module('megamapp', [
                 'ui.router',
                 'satellizer',
                 'permission',
@@ -80,7 +80,7 @@
                         skipIfLoggedIn: skipIfLoggedIn
                     }
                 })
-                ;
+                        ;
                 $urlRouterProvider.otherwise('/login');
                 function skipIfLoggedIn($q, $auth) {
                     var deferred = $q.defer();
@@ -207,7 +207,7 @@
             }
         };
     })
-          
+
 })();
 
 

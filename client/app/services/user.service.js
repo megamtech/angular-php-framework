@@ -1,4 +1,4 @@
-angular.module('1grandtrunk').service('UserService', function ($auth, UIService, $state,$location) {
+angular.module('megamapp').service('UserService', function ($auth, UIService, $state, $location) {
 
     var vm = this;
     vm._user = {};
@@ -11,10 +11,10 @@ angular.module('1grandtrunk').service('UserService', function ($auth, UIService,
             if ($auth.isAuthenticated() === true) {
                 vm.getUserDetails();
                 if (vm.getUserRole() == 1) {
-                    $state.go('home',{},{reload:true});
-                    
+                    $state.go('home', {}, {reload: true});
+
                 } else {
-                    $state.go('packagelist',{},{reload:true});
+                    $state.go('packagelist', {}, {reload: true});
                 }
             } else {
                 $state.go('home', {});

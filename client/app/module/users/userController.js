@@ -4,7 +4,7 @@
 
     'use strict';
     angular
-            .module('megamframework')
+            .module('megamapp')
             .controller('UserController', [
                 '$http', 'API_URLs', 'ngToast', '$state', '$auth', 'UserService', 'UIService', 'NgTableParams', 'APIService',
                 function ($http, API_URLs, ngToast, $state, $auth, UserService, UIService, NgTableParams, APIService) {
