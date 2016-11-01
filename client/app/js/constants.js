@@ -3,7 +3,7 @@
  [[action_type]]:[[API Signature of API / URL]]
  }
  */
-var url = 'http://127.0.0.1/api/server/';
+var url = 'http://127.0.0.1/api/';
 (function () {
     'use strict';
     angular
