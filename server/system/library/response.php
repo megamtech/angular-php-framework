@@ -17,7 +17,8 @@ class Response {
     }
 
     public function redirect($url, $status = 302) {
-        header('Location: ' . str_replace(array('&amp;', "\n", "\r"), array('&', '', ''), $url), true, $status);
+        header('Location: ' . str_replace(array('&amp;', "\n", "\r"),
+                        array('&', '', ''), $url), true, $status);
         exit();
 
     }
@@ -38,11 +39,13 @@ class Response {
     }
 
     private function compress($data, $level = 0) {
-        if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && (strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false)) {
+        if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && (strpos($_SERVER['HTTP_ACCEPT_ENCODING'],
+                        'gzip') !== false)) {
             $encoding = 'gzip';
         }
 
-        if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && (strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'x-gzip') !== false)) {
+        if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && (strpos($_SERVER['HTTP_ACCEPT_ENCODING'],
+                        'x-gzip') !== false)) {
             $encoding = 'x-gzip';
         }
 
@@ -89,7 +92,7 @@ class Response {
 
     public function outputJson($data) {
         $this->addHeader('Content-Type: application/json');
-        $this->setOutput(json_encode($data, true));
+        $this->setOutput(json_encode($data, JSON_PRESERVE_ZERO_FRACTION | JSON_PRETTY_PRINT ));
 
     }
 

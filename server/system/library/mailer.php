@@ -5,9 +5,8 @@
  *
  * @author sundar
  */
-include '../engine/model.php';
 
-class mailer extends Model {
+class mailer  {
 
     public $smtp_host = SMTP_HOST;
     public $smtp_user = SMTP_USER;
@@ -21,7 +20,7 @@ class mailer extends Model {
     public $subject = '';
     public $content = '';
 
-    function send($mailDetails) {
+    function sendMail() {
         $mail = new PHPMailer;
         $mail->isSMTP();                                      // Set mailer to use SMTP
 
@@ -32,15 +31,15 @@ class mailer extends Model {
         $mail->SMTPSecure = $this->smtp_is_tls == true ? 'tls' : 'ssl';                            // Enable TLS encryption, `ssl` also accepted
         $mail->Port = $this->smtp_port;                                    // TCP port to connect to
         $mail->SMTPDebug = 0;
-        $mail->setFrom($mailDetails['email'], $mailDetails['name']);
-        foreach ($mailDetails['to'] as $to_addresses) {
+        $mail->setFrom($this->from['email'], $this->from['name']);
+        foreach ($this->to as $to_addresses) {
             $mail->addAddress($to_addresses['email'], $to_addresses['name']);     // Add a recipient
         }
         $mail->isHTML(true);                                  // Set email format to HTML
 
-        $mail->Subject = $mailDetails['subject'];
-        $mail->Body = $mailDetails['content'];
-        $mail->AltBody = strip_tags($mailDetails['content']);
+        $mail->Subject = $this->subject;
+        $mail->Body = $this->content;
+        $mail->AltBody = $this->alt_content?$this->alt_content:strip_tags($this->content);
         if (!$mail->send()) {
             $result['is_sent'] = 2;
             $result['response'] = array('status' => 'failure', 'errorinfo' => $mail->ErrorInfo);
