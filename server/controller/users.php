@@ -20,7 +20,7 @@ class cUsers extends controller {
         'state' => array('validation' => 'required'),
         'phone' => array('validation' => 'required')
     );
-    private $user_statuses = array('Active' => 1, 'Disabled' => 0, 'Suspended' => -1);
+    private $user_statuses = array('Active' => 1, 'Disabled' => 0, 'Suspended' => -1, 'Waiting for Email Confirmation' => 2);
     
     private $validation_errors = array();
 
@@ -34,7 +34,6 @@ class cUsers extends controller {
         if ($this->validation->is_valid === true) {
             $does_user_exist = $this->mUsers->getUserDetails(array('username' => $data['email']));
             if (is_array($does_user_exist[0]) == false) {
-                $dbdata['suite_id'] = $this->mUsers->getUserSuiteId();
                 $dbdata['password'] = $this->encryptPassword($data['password']);
                 $dbdata['username'] = $data['email'];
                 $dbdata['email'] = $data['email'];
@@ -206,7 +205,6 @@ class cUsers extends controller {
         $data['username'] = strtolower($data['username']);
         $result = $this->mUsers->validate($data['username'],
                 md5($data['password']));
-
         if ($result[0]['status'] == 1) {
             $login_status = 'Success';
             $data = array();
@@ -422,7 +420,6 @@ class cUsers extends controller {
                 $facebook_details['fullname'] = $profile['name'];
                 $facebook_details['role_id'] = $this->user_roles['Default_User'];
                 $facebook_details['status'] = $this->user_statuses['Active'];
-                $facebook_details['suite_id'] = $this->mUsers->getUserSuiteId();
                 $user_id = $this->mUsers->createUser($facebook_details);
                 $facebook_details['muid'] = $user_id['muid'];
                 $mailDetails['social_login_type'] = 'Facebook';
@@ -510,7 +507,6 @@ class cUsers extends controller {
             $google_details['locale'] = $profile['locale'];
             $google_details['role_id'] = $this->user_roles['Default_User'];
             $google_details['status'] = $this->user_statuses['Active'];
-            $google_details['suite_id'] = $this->mUsers->getUserSuiteId();
             $user_id = $this->mUsers->createUser($google_details);
             $google_details['muid'] = $user_id['muid'];
             $mailDetails['social_login_type'] = 'Google';
@@ -597,7 +593,6 @@ class cUsers extends controller {
 
             $pinterest_details['role_id'] = $this->user_roles['Default_User'];
             $pinterest_details['status'] = $this->user_statuses['Active'];
-            $pinterest_details['suite_id'] = $this->mUsers->getUserSuiteId();
             $user_id = $this->mUsers->createUser($pinterest_details);
             $pinterest_details['muid'] = $user_id['muid'];
             $user = $pinterest_details;
