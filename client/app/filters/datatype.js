@@ -2,7 +2,7 @@
 
     'use strict';
     angular
-            .module('megamapp').filter('formatdate', function ($filter, DataFormat) {
+            .module('1grandtrunk').filter('formatdate', function ($filter, DataFormat) {
         return function (input, format, timezone) {
             if (format !== '') {
                 format = DataFormat.date[format];
@@ -15,5 +15,11 @@
 
             return $filter('date')(input, format, timezone);
         };
-    })
+    }).filter('formaturl', function ($filter) {
+        return function (urlstring) {
+            var formatted_url = urlstring.trim();
+            return formatted_url;
+        };
+
+    });
 })();
