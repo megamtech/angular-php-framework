@@ -18,17 +18,10 @@ class cUsers extends controller {
         'zip' => array('validation' => 'required'),
         'country' => array('validation' => 'required'),
         'state' => array('validation' => 'required'),
-        'phone' => array('validation' => 'required'),
-        'security_question' => array('validation' => 'required'),
-        'security_answer' => array('validation' => 'required'),
-        'shipping_carrier' => array('validation' => 'required'),
-        'discard_boxes_status' => array('validation' => 'required'),
-        'photo_status' => array('validation' => 'required')
+        'phone' => array('validation' => 'required')
     );
-    private $user_statuses = array('Active' => 1, 'Disabled' => 0, 'Suspended' => -1,
-        'Waiting for Email Confirmation' => 2);
-    public $user_roles = array('Default_User' => 1, 'Manager' => 2, 'Admin' => 3,
-        'SuperAdmin' => -1, 'PurchaseManager' => 4);
+    private $user_statuses = array('Active' => 1, 'Disabled' => 0, 'Suspended' => -1);
+    
     private $validation_errors = array();
 
     function createUser($default_data = array()) {
@@ -119,31 +112,6 @@ class cUsers extends controller {
 
     }
 
-    function addAdminUser() {
-        $this->load->model('users');
-        $this->load->model('warehouse_location');
-        $data = $this->request->raw_data;
-//        $this->validation->validate($data, array('email', 'warehouse_name', 'role_id'), $this->columns);
-//        if ($this->validation->is_valid === true) {
-        //Admin user name change to lower case 
-        $data['email'] = strtolower($data['email']);
-
-        $role_name = array_search($data['role_id'], $this->user_roles);
-        $data['role_id'] = (int) $data['role_id'];
-        $data['username'] = $data['email'];
-        $data['is_admin'] = false;
-        $data['status'] = 1;
-        $data['is_active'] = true;
-        $data['role_name'] = $role_name;
-        $data['date_added'] = $this->getCurrentTime();
-        $wareHouseDetails = $this->mWarehouseLocation->getWareHouseLocations(array(
-            '_id' => $data['warehouse_id']));
-        $data['warehouse_name'] = $wareHouseDetails[0]['store_name'];
-        $result = $this->mUsers->addAdminUser($data);
-        $this->response->outputJson($result);
-//}
-
-    }
 
     function createCustomerAddress() {
         $this->load->model('users');
@@ -352,57 +320,8 @@ class cUsers extends controller {
         $this->response->outputJson($result);
 
     }
-
-    function savePreferences() {
-        $this->load->model('users');
-        $data = $this->request->raw_data;
-        //Do validation for the data
-        //$data['status'] = (int) $data['status'];
-        $this->validation->validate($data,
-                array(
-            'discard_boxes_status', 'photo_status'), $this->columns);
-        if ($this->validation->is_valid === true) {
-            $dbdata['preferences']['photo_status'] = (int) $data['photo_status'];
-            $dbdata['preferences']['discard_boxes_status'] = (int) $data['discard_boxes_status'];
-            $dbdata['preferences']['shipping_carrier'] = $data['shipping_carrier'];
-            $user_id = $data['muid'];
-            unset($data['muid']);
-            $result = $this->createSuccessResponse($this->mUsers->savePreferences($dbdata,
-                            $user_id));
-        } else {
-            $result = $this->createErrorResponse($this->validation->is_valid);
-        }
-        $this->response->outputJson($result);
-
-    }
-
-    function saveDefaultAddress() {
-        $this->load->model('users');
-        $data = $this->request->raw_data;
-        $addresses = $this->mUsers->getUserAddresses($this->request->auth['user']['muid']);
-        foreach ($addresses as $key => $value) {
-            if ($data['address_id'] == $key) {
-                $addresses[$key]['is_default'] = true;
-            } else {
-                $addresses[$key]['is_default'] = false;
-            }
-        }
-        $this->response->outputJson($this->createSuccessResponse($this->mUsers->updateUser(array(
-                            'addresses' => $addresses),
-                                $this->request->auth['user']['muid'])));
-        //update the user with the user_id
-
-    }
-
-    function getPreferences() {
-        $user_id = $this->request->raw_data['muid'];
-        $this->load->model('users');
-        $this->response->outputJson($this->createSuccessResponse($this->mUsers->getPreferences($user_id)));
-
-    }
-
+    
     function refreshToken() {
-
         $result = $this->jwt->refreshToken($this->request->server['HTTP_Authorization']);
         $this->response->outputJson($result);
 
@@ -606,43 +525,6 @@ class cUsers extends controller {
 
     }
 
-    function sendWelcomeMail($userDetails) {
-        $this->load->library('mailer');
-        $mailer = new mailer();
-        $mailer->from['email'] = 'info@1grandtrunk.com';
-        $mailer->from['name'] = '1GrandTrunk.com';
-        $mailer->to[] = array('email' => $userDetails['email'], 'name' => ($userDetails['firstname'] . ' ' . $userDetails['lastname']));
-        $mailer->subject = 'Welcome to ' . COMPANY_NAME;
-        $mailer->content = str_replace(
-                array(
-            '{{company_name}}',
-            '{{firstname}}',
-            '{{client_address.street}}',
-            '{{client_address.location}}',
-            '{{client_address.city}}',
-            '{{client_address.state}}',
-            '{{client_address.zip}}',
-            '{{client_address.country}}',
-            '{{client_address.phone}}',
-            '{{social_login_type}}'
-                ),
-                array(
-            COMPANY_NAME,
-            $userDetails['firstname'],
-            '8/111 Old Trunk Road',
-            'Pallavaram',
-            'Chennai',
-            'TN',
-            '600043',
-            'India',
-            '+91 98438-67676',
-            $userDetails['social_login_type'],
-                ), file_get_contents(AppTemplates . 'new_social_user.html')
-        );
-        return $mailer->sendMail();
-
-    }
-
     /**
      * Login with Pinterest.
      */
@@ -726,45 +608,6 @@ class cUsers extends controller {
 
     }
 
-    function updateEmail() {
-        $this->load->model('users');
-        $data = $this->request->raw_data;
-        $result = $this->mUsers->getUsers(array('_id' => $data['muid']));
-        if (is_array($result[0])) {
-            $email['email'] = $data['email'];
-            $email['username'] = $data['email'];
-            $update_result = $this->mUsers->updateUser($email, $data['muid']);
-            //Send email 
-            $mailDetails['social_login_type'] = 'Pinterest';
-            $mailDetails['email'] = $data['email'];
-            $mailDetails['firstname'] = $result[0]['firstname'];
-            $mailDetails['lastname'] = $result[0]['lastname'];
-//            print_r($mailDetails); exit;
-            $mailResponse = $this->sendWelcomeMail($mailDetails);
-            
-            $data['muid'] = (string) $result[0]['muid'];
-            $data['firstname'] = $result[0]['firstname'];
-            $data['lastname'] = $result[0]['lastname'];
-            $data['username'] = $data['email'];
-            $data['fullname'] = $result[0]['firstname'] . ' ' . $result[0]['lastname'];
-            $data['email'] = $data['email'];
-
-            if ($result[0]['role_id'] > 1) {
-                $data['warehouse_name'] = $result[0]['warehouse_name'];
-                $data['warehouse_id'] = $result[0]['warehouse_id'];
-            } else {
-                $data['suite_id'] = $result[0]['suite_id'];
-            }
-            $data['role_id'] = $result[0]['role_id'];
-            $data['is_admin'] = $result[0]['is_admin'];
-            $data['show_guide'] = $result[0]['show_guide'];
-            $result = $this->jwt->generateToken($data);
-            $this->response->outputJson($this->createSuccessResponse($result));
-        }
-
-//        $this->response->outputJson($this->createErrorResponse(array('error'=>'user not found')));
-
-    }
 
     function socialLogin() {
         $hybridAuth = new Hybrid_Auth();
@@ -850,49 +693,6 @@ class cUsers extends controller {
             $result = 'No account found with that email address';
             $this->response->outputJson($this->createErrorResponse($result));
         }
-
-    }
-
-//Getter and setter for user guide
-    function userGuide() {
-        $data = $this->request->raw_data;
-        $id = $this->request->auth['user']['muid'];
-        $this->load->model('users');
-        //is show guide  value (true) comes with 1 its again change to boolean value  
-        if (isset($data['show_guide'])) {
-            $data['show_guide'] = (bool) $data['show_guide'];
-            $result['data'] = $this->mUsers->updateUser($data, $id);
-        } else {
-            $result = $this->mUsers->getUserDetails(array('_id' => $id));
-            $result['data'] = (bool) $result[0]['show_guide'];
-        }
-        $this->response->outputJson($this->createSuccessResponse($result));
-
-    }
-
-    function getCustomers() {
-        $data = $this->request->raw_data['filter'];
-        $getContacts = $this->user_role_contacts[$data['role_id']];
-        $this->load->model('users');
-        $contacts = $this->mUsers->getUsers(array(
-            'role_id' => 1,
-            '$or' =>
-            array(
-                array('suite_id' => array('$regex' => '.*' . $data['query'] . '.*')),
-                array('firstname' => array('$regex' => '.*' . $data['query'] . '.*',
-                        '$options' => 'i'))
-            )
-                )
-                ,
-                array('email' => 1, 'suite_id' => 1, 'firstname' => 1, 'lastname' => 1),
-                5);
-        foreach ($contacts as $key => $value) {
-            $fullname = $value['firstname'] . ' ' . $value['lastname'];
-            $contacts[$key]['user'] = $value['suite_id'] . ' - (' . $fullname . ')';
-            $contacts[$key]['muid'] = $value['muid'];
-        }
-
-        $this->response->outputJson($this->createSuccessResponse($contacts));
 
     }
 
