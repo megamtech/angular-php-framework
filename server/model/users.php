@@ -35,16 +35,6 @@ class mUsers extends model {
         return array('muid' => (string) $id);
     }
 
-    function addAdminUser($data) {
-        $data['user_id'] = $this->db->getNextSequence($this->table . '_user_id');
-        $this->db->column = $data;
-        $this->db->table = $this->table;
-        return $this->db->create();
-
-    }
-
-    
-
     function validate($username, $password) {
         $this->db->table = $this->table;
 //Status 1 = Active User;
