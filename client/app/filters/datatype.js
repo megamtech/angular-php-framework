@@ -2,7 +2,7 @@
 
     'use strict';
     angular
-            .module('1grandtrunk').filter('formatdate', function ($filter, DataFormat) {
+            .module('megamapp').filter('formatdate', function ($filter, DataFormat) {
         return function (input, format, timezone) {
             if (format !== '') {
                 format = DataFormat.date[format];
