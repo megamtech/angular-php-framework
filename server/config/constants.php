@@ -28,10 +28,10 @@ define('BASE_PATH', '/api/');
 define('DB_DRIVER', 'mongo');
 define('DB_PORT', '27017');
 
-define('DB_HOSTNAME', 'dbip');
-define('DB_USERNAME', 'dbusername');
+define('DB_HOSTNAME', '127.0.0.1');
+define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
-define('DB_DATABASE', 'databasename');
+define('DB_DATABASE', 'datalytics');
 
 //SMTP details
 define('SMTP_HOST', 'mail.smtp2go.com');
