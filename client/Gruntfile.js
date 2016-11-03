@@ -109,6 +109,7 @@ module.exports = function (grunt) {
         megamtech_js_modules: [
             'app/module/common/template.js',
             'app/module/users/userController.js',
+            'app/module/theme/theme.js'
         ],
         megamtech_js_directives: ['app/directives/*.js'],
         megamtech_js_services: ['app/services/*.js'],
@@ -132,7 +133,10 @@ module.exports = function (grunt) {
             "app/bower_components/bootstrap-datepicker/dist/bootstrap-datepicker.standalone.css",
             "app/bower_components/angular-color-picker/dist/angularjs-color-picker.min.css",
             "app/bower_components/angular-color-picker/dist/themes/angularjs-color-picker-bootstrap.min.css",
-            "app/bower_components/sweetalert2/dist/sweetalert2.min.css"
+            "app/bower_components/sweetalert2/dist/sweetalert2.min.css",
+            "app/bower_components/jQuery-Smart-Wizard/styles/smart_wizard.css",
+            "app/bower_components/angucomplete-alt/angucomplete-alt.css",
+            "app/bower_components/x-editable/dist/bootstrap-editable/css/bootstrap-editable.css"
         ],
         megamtech_css_custom: ["app.css"],
         megamtech_less_custom: ["app/css/app.less"],
@@ -171,7 +175,10 @@ module.exports = function (grunt) {
             "app/bower_components/tinycolor/dist/tinycolor-min.js",
             "app/bower_components/angular-color-picker/dist/angularjs-color-picker.min.js",
             "app/bower_components/es6-promise/es6-promise.auto.min.js",
-            "app/bower_components/sweetalert2/dist/sweetalert2.min.js"
+            "app/bower_components/sweetalert2/dist/sweetalert2.min.js",
+            "app/bower_components/jQuery-Smart-Wizard/js/jquery.smartWizard.js",
+            "app/bower_components/angucomplete-alt/dist/angucomplete-alt.min.js",
+            "app/bower_components/x-editable/dist/bootstrap-editable/js/bootstrap-editable.min.js"
         ]
     });
     // Load the plugin that provides the "uglify" task.

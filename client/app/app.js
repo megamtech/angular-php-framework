@@ -26,7 +26,8 @@
                 'angularMoment',
                 'ngBootstrap',
                 'ui.mask',
-                'color.picker'
+                'color.picker',
+                'angucomplete-alt'
 
             ])
             .config(function ($stateProvider, $urlRouterProvider, $authProvider, API_URLs) {
@@ -39,7 +40,6 @@
                 $authProvider.facebook({
                     clientId: ''
                 });
-
                 $authProvider.google({
                     clientId: ''
                 });
@@ -56,7 +56,6 @@
                     type: '2.0',
                     popupOptions: {width: 580, height: 400}
                 });
-
 // Google
                 $authProvider.google({
                     url: '/auth/google',
@@ -94,136 +93,163 @@
                     url: '/theme',
                     abstract: true,
                     templateUrl: 'module/theme/index.html',
-                    controller: 'UserController as vm',
+                    controller: 'ThemeController as vm',
                     data: {
-                        requiredLogin: true,
+                        requiredLogin: false,
                         title: "buttons"
                     }
                 }).state('theme.buttons', {
                     url: '/buttons',
                     name: 'buttons',
                     templateUrl: 'module/theme/buttons.html',
-                    controller: 'UserController as vm',
+                    controller: 'ThemeController as vm',
                     data: {
-                        requiredLogin: true,
+                        requiredLogin: false,
                         title: "buttons"
                     }
                 }).state('theme.widgets', {
                     url: '/widgets',
                     name: 'buttons',
                     templateUrl: 'module/theme/widgets.html',
-                    controller: 'UserController as vm',
+                    controller: 'ThemeController as vm',
                     data: {
-                        requiredLogin: true,
+                        requiredLogin: false,
                         title: "buttons"
                     }
                 }).state('theme.alerts', {
                     url: '/alerts',
                     name: 'alerts',
                     templateUrl: 'module/theme/alerts.html',
-                    controller: 'UserController as vm',
+                    controller: 'ThemeController as vm',
                     data: {
-                        requiredLogin: true,
+                        requiredLogin: false,
                         title: "Alerts"
                     }
                 }).state('theme.navs', {
                     url: '/navs',
                     name: 'navs',
                     templateUrl: 'module/theme/navs.html',
-                    controller: 'UserController as vm',
+                    controller: 'ThemeController as vm',
                     data: {
-                        requiredLogin: true,
+                        requiredLogin: false,
                         title: "Navs"
                     }
                 }).state('theme.progress', {
                     url: '/progress',
                     name: 'progress',
                     templateUrl: 'module/theme/progress_bars.html',
-                    controller: 'UserController as vm',
+                    controller: 'ThemeController as vm',
                     data: {
-                        requiredLogin: true,
+                        requiredLogin: false,
                         title: "Progress Bars"
                     }
                 }).state('theme.modal', {
                     url: '/modal',
                     name: 'modal',
                     templateUrl: 'module/theme/modal.html',
-                    controller: 'UserController as vm',
+                    controller: 'ThemeController as vm',
                     data: {
-                        requiredLogin: true,
+                        requiredLogin: false,
                         title: "Modal"
                     }
                 }).state('theme.carousel', {
                     url: '/carousel',
                     name: 'carousel',
                     templateUrl: 'module/theme/carousel.html',
-                    controller: 'UserController as vm',
+                    controller: 'ThemeController as vm',
                     data: {
-                        requiredLogin: true,
+                        requiredLogin: false,
                         title: "Carousel"
                     }
                 }).state('theme.typography', {
                     url: '/typography',
                     name: 'typography',
                     templateUrl: 'module/theme/typography.html',
-                    controller: 'UserController as vm',
+                    controller: 'ThemeController as vm',
                     data: {
-                        requiredLogin: true,
+                        requiredLogin: false,
                         title: "Typography"
                     }
                 }).state('theme.grid', {
                     url: '/grid',
                     name: 'grid',
                     templateUrl: 'module/theme/grid.html',
-                    controller: 'UserController as vm',
+                    controller: 'ThemeController as vm',
                     data: {
-                        requiredLogin: true,
+                        requiredLogin: false,
                         title: "Grid"
                     }
                 }).state('theme.form-elements', {
                     url: '/form-elements',
                     name: 'form-elements',
                     templateUrl: 'module/theme/form_elements.html',
-                    controller: 'UserController as vm',
+                    controller: 'ThemeController as vm',
                     data: {
-                        requiredLogin: true,
+                        requiredLogin: false,
                         title: "Form Element"
                     }
                 }).state('theme.editors', {
                     url: '/editors',
                     name: 'editors',
                     templateUrl: 'module/theme/editors.html',
-                    controller: 'UserController as vm',
+                    controller: 'ThemeController as vm',
                     data: {
-                        requiredLogin: true,
+                        requiredLogin: false,
                         title: "Editors"
                     }
                 }).state('theme.form-pickers', {
                     url: '/form-pickers',
                     name: 'form-pickers',
                     templateUrl: 'module/theme/form_pickers.html',
-                    controller: 'UserController as vm',
+                    controller: 'ThemeController as vm',
                     data: {
-                        requiredLogin: true,
+                        requiredLogin: false,
                         title: "Form Pickers"
                     }
                 }).state('theme.mask', {
                     url: '/mask',
                     name: 'mask',
                     templateUrl: 'module/theme/mask.html',
-                    controller: 'UserController as vm',
+                    controller: 'ThemeController as vm',
                     data: {
-                        requiredLogin: true,
+                        requiredLogin: false,
                         title: "Mask"
                     }
                 }).state('theme.others', {
                     url: '/others',
                     name: 'others',
                     templateUrl: 'module/theme/others.html',
-                    controller: 'UserController as vm',
+                    controller: 'ThemeController as vm',
                     data: {
-                        requiredLogin: true,
+                        requiredLogin: false,
                         title: "Others"
+                    }
+                }).state('theme.wizard', {
+                    url: '/wizard',
+                    name: 'wizard',
+                    templateUrl: 'module/theme/wizard.html',
+                    controller: 'ThemeController as vm',
+                    data: {
+                        requiredLogin: false,
+                        title: "Wizard"
+                    }
+                }).state('theme.typeahead', {
+                    url: '/typeahead',
+                    name: 'typeahead',
+                    templateUrl: 'module/theme/typeahead.html',
+                    controller: 'ThemeController as vm',
+                    data: {
+                        requiredLogin: false,
+                        title: "Typeahead"
+                    }
+                }).state('theme.x_editable', {
+                    url: '/x_editable',
+                    name: 'x_editable',
+                    templateUrl: 'module/theme/x_editable.html',
+                    controller: 'ThemeController as vm',
+                    data: {
+                        requiredLogin: false,
+                        title: "X-Editable"
                     }
                 });
                 $urlRouterProvider.otherwise('/login');
@@ -264,7 +290,6 @@
                     }
                     return false;
                 });
-
                 PermissionStore.definePermission('manager', function ($stateParams) {
 
                     var userDetails = $auth.getPayload()['data'];
@@ -325,7 +350,6 @@
         defaultErrorMessageResolver.getErrorMessages().then(function (errorMessages) {
             errorMessages['confirmPassword'] = 'Please ensure the passwords match.';
         });
-
         return {
             restrict: 'A',
             require: 'ngModel',
@@ -336,7 +360,6 @@
                 ngModel.$validators.confirmPassword = function (modelValue) {
                     return modelValue === scope.confirmPassword;
                 };
-
                 scope.$watch('confirmPassword', function () {
                     ngModel.$validate();
                 });
