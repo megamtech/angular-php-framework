@@ -32,6 +32,9 @@
         "bootstrap-datepicker": "^1.6.4",
         "angular-ui-mask": "1.8.7",
         "angular-color-picker": "angularjs-color-picker#^2.5.0",
-        "sweetalert2": "6.0.1"
+        "sweetalert2": "6.0.1",
+        "jQuery-Smart-Wizard": "3.3.1",
+        "angucomplete-alt": "2.5.0",
+        "x-editable": "1.5.1"
     }
 }
