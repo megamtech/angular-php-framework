@@ -109,7 +109,6 @@ module.exports = function (grunt) {
         megamtech_js_modules: [
             'app/module/common/template.js',
             'app/module/users/userController.js',
-
         ],
         megamtech_js_directives: ['app/directives/*.js'],
         megamtech_js_services: ['app/services/*.js'],
@@ -125,7 +124,15 @@ module.exports = function (grunt) {
             "app/bower_components/angular-ui-switch/angular-ui-switch.min.css",
             "app/bower_components/angular-validation-messages/angular-validation-messages.min.css",
             "app/bower_components/ng-tags-input/ng-tags-input.min.css",
-            "app/bower_components/textAngular/dist/textAngular.css"
+            "app/bower_components/textAngular/dist/textAngular.css",
+            "app/bower_components/clockpicker/dist/bootstrap-clockpicker.min.css",
+            "app/bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css",
+            "app/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css",
+            "app/bower_components/bootstrap-datepicker/dist/bootstrap-datepicker3.css",
+            "app/bower_components/bootstrap-datepicker/dist/bootstrap-datepicker.standalone.css",
+            "app/bower_components/angular-color-picker/dist/angularjs-color-picker.min.css",
+            "app/bower_components/angular-color-picker/dist/themes/angularjs-color-picker-bootstrap.min.css",
+            "app/bower_components/sweetalert2/dist/sweetalert2.min.css"
         ],
         megamtech_css_custom: ["app.css"],
         megamtech_less_custom: ["app/css/app.less"],
@@ -156,6 +163,15 @@ module.exports = function (grunt) {
             "app/bower_components/angular-auto-validate/dist/jcs-auto-validate.min.js",
             "app/bower_components/moment/moment.js",
             "app/bower_components/angular-moment/angular-moment.js",
+            "app/bower_components/clockpicker/dist/bootstrap-clockpicker.min.js",
+            "app/bower_components/bootstrap-daterangepicker/daterangepicker.js",
+            "app/bower_components/ng-bs-daterangepicker/src/ng-bs-daterangepicker.js",
+            "app/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js",
+            "app/bower_components/angular-ui-mask/dist/mask.min.js",
+            "app/bower_components/tinycolor/dist/tinycolor-min.js",
+            "app/bower_components/angular-color-picker/dist/angularjs-color-picker.min.js",
+            "app/bower_components/es6-promise/es6-promise.auto.min.js",
+            "app/bower_components/sweetalert2/dist/sweetalert2.min.js"
         ]
     });
     // Load the plugin that provides the "uglify" task.

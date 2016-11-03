@@ -23,7 +23,10 @@
                 'ngTagsInput',
                 'textAngular',
                 'jcs-autoValidate',
-                'angularMoment'
+                'angularMoment',
+                'ngBootstrap',
+                'ui.mask',
+                'color.picker'
 
             ])
             .config(function ($stateProvider, $urlRouterProvider, $authProvider, API_URLs) {
@@ -79,8 +82,150 @@
                     resolve: {
                         skipIfLoggedIn: skipIfLoggedIn
                     }
-                })
-                        ;
+                }).state('home', {
+                    url: '/home',
+                    templateUrl: 'module/users/home.html',
+                    controller: 'UserController as vm',
+                    data: {
+                        requiredLogin: true,
+                        title: "home"
+                    }
+                }).state('theme', {
+                    url: '/theme',
+                    abstract: true,
+                    templateUrl: 'module/theme/index.html',
+                    controller: 'UserController as vm',
+                    data: {
+                        requiredLogin: true,
+                        title: "buttons"
+                    }
+                }).state('theme.buttons', {
+                    url: '/buttons',
+                    name: 'buttons',
+                    templateUrl: 'module/theme/buttons.html',
+                    controller: 'UserController as vm',
+                    data: {
+                        requiredLogin: true,
+                        title: "buttons"
+                    }
+                }).state('theme.widgets', {
+                    url: '/widgets',
+                    name: 'buttons',
+                    templateUrl: 'module/theme/widgets.html',
+                    controller: 'UserController as vm',
+                    data: {
+                        requiredLogin: true,
+                        title: "buttons"
+                    }
+                }).state('theme.alerts', {
+                    url: '/alerts',
+                    name: 'alerts',
+                    templateUrl: 'module/theme/alerts.html',
+                    controller: 'UserController as vm',
+                    data: {
+                        requiredLogin: true,
+                        title: "Alerts"
+                    }
+                }).state('theme.navs', {
+                    url: '/navs',
+                    name: 'navs',
+                    templateUrl: 'module/theme/navs.html',
+                    controller: 'UserController as vm',
+                    data: {
+                        requiredLogin: true,
+                        title: "Navs"
+                    }
+                }).state('theme.progress', {
+                    url: '/progress',
+                    name: 'progress',
+                    templateUrl: 'module/theme/progress_bars.html',
+                    controller: 'UserController as vm',
+                    data: {
+                        requiredLogin: true,
+                        title: "Progress Bars"
+                    }
+                }).state('theme.modal', {
+                    url: '/modal',
+                    name: 'modal',
+                    templateUrl: 'module/theme/modal.html',
+                    controller: 'UserController as vm',
+                    data: {
+                        requiredLogin: true,
+                        title: "Modal"
+                    }
+                }).state('theme.carousel', {
+                    url: '/carousel',
+                    name: 'carousel',
+                    templateUrl: 'module/theme/carousel.html',
+                    controller: 'UserController as vm',
+                    data: {
+                        requiredLogin: true,
+                        title: "Carousel"
+                    }
+                }).state('theme.typography', {
+                    url: '/typography',
+                    name: 'typography',
+                    templateUrl: 'module/theme/typography.html',
+                    controller: 'UserController as vm',
+                    data: {
+                        requiredLogin: true,
+                        title: "Typography"
+                    }
+                }).state('theme.grid', {
+                    url: '/grid',
+                    name: 'grid',
+                    templateUrl: 'module/theme/grid.html',
+                    controller: 'UserController as vm',
+                    data: {
+                        requiredLogin: true,
+                        title: "Grid"
+                    }
+                }).state('theme.form-elements', {
+                    url: '/form-elements',
+                    name: 'form-elements',
+                    templateUrl: 'module/theme/form_elements.html',
+                    controller: 'UserController as vm',
+                    data: {
+                        requiredLogin: true,
+                        title: "Form Element"
+                    }
+                }).state('theme.editors', {
+                    url: '/editors',
+                    name: 'editors',
+                    templateUrl: 'module/theme/editors.html',
+                    controller: 'UserController as vm',
+                    data: {
+                        requiredLogin: true,
+                        title: "Editors"
+                    }
+                }).state('theme.form-pickers', {
+                    url: '/form-pickers',
+                    name: 'form-pickers',
+                    templateUrl: 'module/theme/form_pickers.html',
+                    controller: 'UserController as vm',
+                    data: {
+                        requiredLogin: true,
+                        title: "Form Pickers"
+                    }
+                }).state('theme.mask', {
+                    url: '/mask',
+                    name: 'mask',
+                    templateUrl: 'module/theme/mask.html',
+                    controller: 'UserController as vm',
+                    data: {
+                        requiredLogin: true,
+                        title: "Mask"
+                    }
+                }).state('theme.others', {
+                    url: '/others',
+                    name: 'others',
+                    templateUrl: 'module/theme/others.html',
+                    controller: 'UserController as vm',
+                    data: {
+                        requiredLogin: true,
+                        title: "Others"
+                    }
+                });
                 $urlRouterProvider.otherwise('/login');
                 function skipIfLoggedIn($q, $auth) {
                     var deferred = $q.defer();

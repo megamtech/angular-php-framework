@@ -219,20 +219,20 @@
 
 
 /**
-url pattern : [[module_name]]:{
-	[[action_type]]:[[API Signature of API / URL]]
-}
-*/
-var url = 'http://127.0.0.1/api/server/';
+ url pattern : [[module_name]]:{
+ [[action_type]]:[[API Signature of API / URL]]
+ }
+ */
+var url = 'http://127.0.0.1/api/';
 (function () {
     'use strict';
     angular
             .module('megamapp').constant('API_URLs', {
-        
+        'register': url + 'register',
+        'login': url + 'login',
         "module_name": {
             "add": url + 'master/add',
         }
-
     }).constant('DataFormat', {
         'date': {
             'medium': 'd MMM yyyy hh:mm a',
@@ -449,7 +449,7 @@ angular.module('megamapp').service('UserService', function ($auth, UIService, $s
 
     'use strict';
     angular
-            .module('1grandtrunk').filter('formatdate', function ($filter, DataFormat) {
+            .module('megamapp').filter('formatdate', function ($filter, DataFormat) {
         return function (input, format, timezone) {
             if (format !== '') {
                 format = DataFormat.date[format];
@@ -474,11 +474,11 @@ angular.module('megamapp').service('UserService', function ($auth, UIService, $s
 
     'use strict';
     angular
-            .module('1grandtrunk')
+            .module('megamapp')
             .controller('TemplateController', TemplateController);
-    function TemplateController(UIService, UserService, $state, $rootScope, APIService, $window, $cookies) {
+    function TemplateController(UIService, UserService, $state, $rootScope) {
         var vm = this;
-        vm.appname = ' - 1GrandTrunk';
+        vm.appname = ' - MegamFrameWork';
         $rootScope.helpstartstep = 0;
         vm.isUserAuthenticated = function () {
             if (UserService.isUserAuthenticated()) {
@@ -486,8 +486,6 @@ angular.module('megamapp').service('UserService', function ($auth, UIService, $s
             } else {
                 return false;
             }
-
-
         };
         vm.getUserDetails = function () {
             return UserService.getUserDetails();
@@ -499,18 +497,6 @@ angular.module('megamapp').service('UserService', function ($auth, UIService, $s
             if (angular.isDefined($state.$current.data))
                 if (angular.isDefined($state.$current.data.title))
                     return $state.$current.data.title + vm.appname;
-        };
-        vm.updateHelp = function (show_guide) {
-            $cookies.put('show_guide', show_guide);
-            if (show_guide == true) {
-                $window.location.reload();
-            }
-            APIService.post('userguide', '', {show_guide: show_guide}).success(function (data) {
-
-            });
-        };
-        vm.showHelpGuide = function () {
-            return $cookies.get('show_guide');
         };
     }
 })();
