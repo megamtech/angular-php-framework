@@ -1,5 +1,5 @@
 module.exports = function (grunt) {
-
+    require('load-grunt-tasks')(grunt);
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -8,13 +8,23 @@ module.exports = function (grunt) {
         dist_folder_css: 'app/dist/css/',
         dist_folder_fonts: 'app/dist/fonts/',
         dist_folder_html: 'app/dist/html/',
-        less: {
-            megamtech_gen_css: {
+        sass: {
+            options: {
+                sourceMap: false
+            },
+            dist: {
                 files: {
-                    '<%= dist_folder_css %><%=megamtech_css_custom %>': '<%=megamtech_less_custom %>'
+                    'app/dist/css/app.css': '<%=megamtech_scss_custom %>'
                 }
             }
         },
+//        less: {
+//            megamtech_gen_css: {
+//                files: {
+//                    '<%= dist_folder_css %><%=megamtech_css_custom %>': '<%=megamtech_less_custom %>'
+//                }
+//            }
+//        },
         htmlmin: {// Task
             dist: {// Target
                 options: {// Target options
@@ -41,8 +51,8 @@ module.exports = function (grunt) {
                 dest: '<%= dist_folder_js %><%= pkg.name %>.lib.js'
             },
             megamtechcss: {
-                src: ['<%=megamtech_css_lib%>', '<%= dist_folder_css %><%=megamtech_css_custom%>'],
-                dest: '<%= dist_folder_css %><%= pkg.name %>.css'
+                src: ['<%=megamtech_css_lib%>'],
+                dest: '<%= dist_folder_css %><%= pkg.name %>.lib.css'
             }
 
         },
@@ -102,8 +112,8 @@ module.exports = function (grunt) {
         },
         watch: {
             scripts: {
-                files: ['<%=app_js%>', '<%=megamtech_js_constants %>', '<%=megamtech_js_filters %>', '<%=megamtech_js_directives %>', '<%=megamtech_js_services %>', '<%=megamtech_js_modules %>', '<%=megamtech_less_custom %>'],
-                tasks: ['less:megamtech_gen_css', 'concat:megamtech', 'uglify:megamtech_compress', 'concat:megamtechcss', 'cssmin:megamtech_compress']
+                files: ['<%=app_js%>', '<%=megamtech_js_constants %>', '<%=megamtech_js_filters %>', '<%=megamtech_js_directives %>', '<%=megamtech_js_services %>', '<%=megamtech_js_modules %>', '<%=megamtech_scss_custom %>'],
+                tasks: ['concat:megamtech', 'uglify:megamtech_compress', 'sass']
             }
         },
         megamtech_js_modules: [
@@ -140,6 +150,7 @@ module.exports = function (grunt) {
         ],
         megamtech_css_custom: ["app.css"],
         megamtech_less_custom: ["app/css/app.less"],
+        megamtech_scss_custom: ["app/css/main.scss"],
         app_js: ['app/app.js'],
         bower_components_js: [
             //Using jquery before angular to use eval or execute js inside html
@@ -190,9 +201,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-bootlint');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-less');
+//    grunt.loadNpmTasks('node-sass');
+
 
     // Default task(s).
-    grunt.registerTask('default', ['cssgen', 'concat', 'uglify', 'cssmin', 'copy', 'htmlmin']);
+    grunt.registerTask('default', ['sass', 'concat', 'uglify', 'cssmin', 'copy', 'htmlmin']);
     grunt.registerTask('dev', ['watch']);
     grunt.registerTask('html', ['htmlmin']);
     grunt.registerTask('cssgen', ['less:megamtech_gen_css']);
@@ -200,6 +213,8 @@ module.exports = function (grunt) {
     grunt.registerTask('jslib', ['concat:megamtechlib', 'uglify:megamtech_lib_compress']);
     grunt.registerTask('jscustom', ['concat:megamtech', 'uglify:megamtech_compress']);
     grunt.registerTask('csslib', ['concat:megamtechcss']);
+//    grunt.registerTask('csslib', ['sass']);
+//    grunt.registerTask('default', ['sass']);
 };
 
 

@@ -107,6 +107,15 @@
                         requiredLogin: false,
                         title: "buttons"
                     }
+                }).state('theme.cards', {
+                    url: '/cards',
+                    name: 'cards',
+                    templateUrl: 'module/theme/cards.html',
+                    controller: 'ThemeController as vm',
+                    data: {
+                        requiredLogin: false,
+                        title: "Cards"
+                    }
                 }).state('theme.widgets', {
                     url: '/widgets',
                     name: 'buttons',

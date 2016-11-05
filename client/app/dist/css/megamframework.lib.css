@@ -2,7 +2,7 @@
  megamframework 
  Copyright to :  
  Developed By :  Megam Technologies LLP(http://megamtech.com) 
- Created On : 2016-11-03 
+ Created On : 2016-11-04 
  */
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
@@ -2065,7 +2065,3 @@ a.editable-click.editable-disabled:hover {
   margin-left: -5px;
   margin-right: -5px;
 }
-
-/*
-Create your theme file here and compile with the grunt to generate the css
-*/

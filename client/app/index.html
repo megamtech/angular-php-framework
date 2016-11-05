@@ -10,30 +10,30 @@
         <title ng-controller="TemplateController as vm" ng-bind="vm.getTitle()"></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="dist/css/megamframework.min.css">
+        <link rel="stylesheet" href="dist/css/megamframework.lib.css">
 
         <style type="text/css">
             [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
                 display: none !important;
             }
-	    .footer_menu ul {
-		margin: 0;
-		padding: 0;
-		list-style-type: none;
-	    }
-	    .iv-layout.bottom-footer{
-		background: #274364;
-		font-family: 'Open Sans', sans-serif;
-		font-size: 13px;
-		line-height: 1.25;
-		color: #fff;
-		padding: 15px 0;
-		z-index: 12000;
-		position: relative;
-		-webkit-transition: all 0.8s cubic-bezier(0.68, 0, 0.29, 1);
-		-moz-transition: all 0.8s cubic-bezier(0.68, 0, 0.29, 1);
-		transition: all 0.8s cubic-bezier(0.68, 0, 0.29, 1);
-	    }
+            .footer_menu ul {
+                margin: 0;
+                padding: 0;
+                list-style-type: none;
+            }
+            .iv-layout.bottom-footer{
+                background: #274364;
+                font-family: 'Open Sans', sans-serif;
+                font-size: 13px;
+                line-height: 1.25;
+                color: #fff;
+                padding: 15px 0;
+                z-index: 12000;
+                position: relative;
+                -webkit-transition: all 0.8s cubic-bezier(0.68, 0, 0.29, 1);
+                -moz-transition: all 0.8s cubic-bezier(0.68, 0, 0.29, 1);
+                transition: all 0.8s cubic-bezier(0.68, 0, 0.29, 1);
+            }
             .preloader {
                 padding: 25%;
                 min-height: 100%;
@@ -90,7 +90,7 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown" ng-include="'module/appmail/messagelist.html'" ng-controller="MessageController as vm" ng-init='vm.getRecentUnreadMessages(5)'>
-				<!-- /.dropdown-messages -->
+                                <!-- /.dropdown-messages -->
                             </li>
                             <li class="dropdown " ng-include="'module/appmail/alertslist.html'" ng-controller="AlertController as vm" ng-init='vm.getRecentUnreadAlerts(5)'>
 
@@ -100,7 +100,7 @@
                                 <a href="#" data-toggle="dropdown" class="dropdown-toggle">Hello {{vm.getUserName()}} <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#/settings/preferences">Preferences</a></li>
-				    <li><a href="#/getuserhistory" permission only="['user']">My Account</a></li>
+                                    <li><a href="#/getuserhistory" permission only="['user']">My Account</a></li>
                                     <!--<li><a href="#/home" permission only="['manager','admin','superadmin', 'user']">Dashboard</a></li>-->
                                     <li class="divider"></li>
                                     <li ng-controller="UserController as vm"><a ng-click="vm.logout()">Logout</a></li>
@@ -124,28 +124,28 @@
     <footer class="footer" ng-cloak>
 
 
-	
-	<div class="iv-layout bottom-footer two-columns ">
-	    <div class="container">
-		<div class="row">
-		    <div class="col-xs-10 col-sm-8 col-md-6 bottom-footer-left-area ">
-			<div class="iv-module custom-text ">
-			    <div style="text-align: left;">
-				All rights reserved. </div>
-			</div>
-		    </div>
-		    <div class="col-xs-2 col-sm-4 col-md-6 bottom-footer-right-area">
-			<div class="iv-module social-icons hidden-xs">
-			    <div class="centered">
-				<a href="https://www.facebook.com/megamframework-1727354140866119/" target="_blank"><i class="fa fw fa-facebook"></i></a>
-				<a href="https://twitter.com/megamframework" target="_blank"><i class="fa fw fa-twitter"></i></a>
-				<a href="https://in.pinterest.com/megamframework/" target="_blank"><i class="fa fw fa-pinterest"></i></a>
-			    </div>
-			</div>
-		    </div>
-		</div>					
-	    </div>
-	</div>
+
+        <div class="iv-layout bottom-footer two-columns ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-10 col-sm-8 col-md-6 bottom-footer-left-area ">
+                        <div class="iv-module custom-text ">
+                            <div style="text-align: left;">
+                                All rights reserved. </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-2 col-sm-4 col-md-6 bottom-footer-right-area">
+                        <div class="iv-module social-icons hidden-xs">
+                            <div class="centered">
+                                <a href="https://www.facebook.com/megamframework-1727354140866119/" target="_blank"><i class="fa fw fa-facebook"></i></a>
+                                <a href="https://twitter.com/megamframework" target="_blank"><i class="fa fw fa-twitter"></i></a>
+                                <a href="https://in.pinterest.com/megamframework/" target="_blank"><i class="fa fw fa-pinterest"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
 
 
