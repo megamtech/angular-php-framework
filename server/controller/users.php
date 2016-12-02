@@ -2,8 +2,7 @@
 
 /**
  * Description of cUserController
- *
- * @author gmsundar
+ * @property mUsers $mUsers
  */
 class cUsers extends controller {
 
@@ -20,8 +19,8 @@ class cUsers extends controller {
         'state' => array('validation' => 'required'),
         'phone' => array('validation' => 'required')
     );
-    private $user_statuses = array('Active' => 1, 'Disabled' => 0, 'Suspended' => -1, 'Waiting for Email Confirmation' => 2);
-    
+    private $user_statuses = array('Active' => 1, 'Disabled' => 0, 'Suspended' => -1,
+        'Waiting for Email Confirmation' => 2);
     private $validation_errors = array();
 
     function createUser($default_data = array()) {
@@ -110,7 +109,6 @@ class cUsers extends controller {
         $this->mUsers->updateUser($data, $this->request->raw_data['muid']);
 
     }
-
 
     function createCustomerAddress() {
         $this->load->model('users');
@@ -279,7 +277,7 @@ class cUsers extends controller {
     }
 
     function decryptPassword() {
-        
+
     }
 
     function getUsers() {
@@ -318,7 +316,7 @@ class cUsers extends controller {
         $this->response->outputJson($result);
 
     }
-    
+
     function refreshToken() {
         $result = $this->jwt->refreshToken($this->request->server['HTTP_Authorization']);
         $this->response->outputJson($result);
@@ -474,7 +472,7 @@ class cUsers extends controller {
         $profile = json_decode($profileResponse->getBody(), true);
         // Step 3a. If user is already signed in then link accounts.
         $this->load->model('users');
-        //Query for email id 
+        //Query for email id
 
         $user = $this->mUsers->getUsers(array('username' => $profile['email']));
 //        $user = $this->mUsers->getUsers(array('google' => $profile['sub']));
@@ -568,7 +566,7 @@ class cUsers extends controller {
 
         // Step 3a. If user is already signed in then link accounts.
         $this->load->model('users');
-        //Query for email id 
+        //Query for email id
 
         $user = $this->mUsers->getUsers(array('pinterest_id' => $profile['id']));
 
@@ -602,7 +600,6 @@ class cUsers extends controller {
         $this->response->outputJson($result);
 
     }
-
 
     function socialLogin() {
         $hybridAuth = new Hybrid_Auth();

@@ -146,7 +146,8 @@ module.exports = function (grunt) {
             "app/bower_components/sweetalert2/dist/sweetalert2.min.css",
             "app/bower_components/jQuery-Smart-Wizard/styles/smart_wizard.css",
             "app/bower_components/angucomplete-alt/angucomplete-alt.css",
-            "app/bower_components/x-editable/dist/bootstrap-editable/css/bootstrap-editable.css"
+            "app/bower_components/x-editable/dist/bootstrap-editable/css/bootstrap-editable.css",
+            "app/bower_components/angular-vertical-menu/build/angular-vertical-menu.css"
         ],
         megamtech_css_custom: ["app.css"],
         megamtech_less_custom: ["app/css/app.less"],
@@ -189,7 +190,8 @@ module.exports = function (grunt) {
             "app/bower_components/sweetalert2/dist/sweetalert2.min.js",
             "app/bower_components/jQuery-Smart-Wizard/js/jquery.smartWizard.js",
             "app/bower_components/angucomplete-alt/dist/angucomplete-alt.min.js",
-            "app/bower_components/x-editable/dist/bootstrap-editable/js/bootstrap-editable.min.js"
+            "app/bower_components/x-editable/dist/bootstrap-editable/js/bootstrap-editable.min.js",
+            "app/bower_components/angular-vertical-menu/build/angular-vertical-menu.js"
         ]
     });
     // Load the plugin that provides the "uglify" task.

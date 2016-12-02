@@ -253,6 +253,131 @@
                     $scope.typeaheadSelected = function (selected) {
                         console.log(selected);
                     };
+                    $scope.tabs = [
+                        {title: 'Dynamic Title 1', content: 'Dynamic content 1'},
+                        {title: 'Dynamic Title 2', content: 'Dynamic content 2', disabled: true}
+                    ];
+                    $scope.alertMe = function () {
+                        setTimeout(function () {
+                            //$window.alert('You\'ve selected the alert tab!');
+                        });
+                    };
+                    $scope.state = false;
+                    $scope.toggleState = function () {
+                        $scope.state = !$scope.state;
+                    };
+                    $scope.myconfig = {
+                        "id": "http://jsonschema.net",
+                        "type": "object",
+                        "definitions": {
+                            "label": {
+                                "description": "Label of the menu item",
+                                "type": "string",
+                                "optional": false
+                            },
+                            "icon": {
+                                "description": "Name of a Font Awesome icon",
+                                "type": "string",
+                                "optional": false
+                            },
+                            "href": {
+                                "description": "Angular route path or url",
+                                "type": "string",
+                                "optional": false
+                            },
+                            "callback": {
+                                "description": "Callback function called when the item is activated. The callback function receive the underlying item object as the first argument.",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "default": {
+                                "type": "object",
+                                "properties": {
+                                    "icon": {
+                                        "$ref": "#/definitions/icon"
+                                    }
+                                }
+                            },
+                            "animation": {
+                                "description": "Customization of the animation. If not defined default parameters duration(0.4) and timing(ease) are used.",
+                                "type": "object",
+                                "properties": {
+                                    "duration": {
+                                        "description": "Duration of the animation",
+                                        "type": "number",
+                                        "optional": false
+                                    },
+                                    "timing": {
+                                        "description": "The timing function to use for the animation",
+                                        "type": "string",
+                                        "optional": false
+                                    }
+                                }
+                            },
+                            "data": {
+                                "description": "Declare the structure of menu",
+                                "type": "array",
+                                "items": {
+                                    "description": "First level menu item",
+                                    "type": "object",
+                                    "properties": {
+                                        "label": {
+                                            "$ref": "#/definitions/label"
+                                        },
+                                        "icon": {
+                                            "$ref": "#/definitions/icon"
+                                        },
+                                        "badge": {
+                                            "description": "A value to be displayed as a badge",
+                                            "type": "string"
+                                        },
+                                        "children": {
+                                            "description": "List of sub items",
+                                            "type": "array",
+                                            "items": {
+                                                "description": "Second level item",
+                                                "type": "object",
+                                                "properties": {
+                                                    "label": {
+                                                        "$ref": "#/definitions/label"
+                                                    },
+                                                    "icon": {
+                                                        "$ref": "#/definitions/icon"
+                                                    },
+
+                                                },
+                                                "required": [
+                                                    "label"
+                                                ],
+                                                "additionalProperties": false
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "label"
+                                    ],
+                                    "additionalProperties": false
+                                }
+                            }
+                        }
+                    };
                 }
+
             ]);
+
 })();
+angular.module('megamapp').directive('sidebarDirective', function () {
+    return {
+        link: function (scope, element, attr) {
+            scope.$watch(attr.sidebarDirective, function (newVal) {
+                if (newVal)
+                {
+                    element.addClass('show');
+                    return;
+                }
+                element.removeClass('show');
+            });
+        }
+    };
+});

@@ -27,8 +27,8 @@
                 'ngBootstrap',
                 'ui.mask',
                 'color.picker',
-                'angucomplete-alt'
-
+                'angucomplete-alt',
+                'angularVerticalMenu'
             ])
             .config(function ($stateProvider, $urlRouterProvider, $authProvider, API_URLs) {
                 // Satellizer configuration that specifies which API
