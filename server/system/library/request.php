@@ -21,7 +21,12 @@ class Request {
         $this->cookie = $this->clean($_COOKIE);
         $this->files = $this->clean($_FILES);
         $this->server = $this->clean($_SERVER);
-        $this->raw_data = $this->clean(json_decode(file_get_contents('php://input'), true));
+        $this->raw_data = $this->clean(json_decode(file_get_contents('php://input'),
+                        true));
+        if (APP_LOGLEVEL == 'DEBUG') {
+
+        }
+
     }
 
     public function clean($data) {
@@ -36,6 +41,7 @@ class Request {
         }
 
         return $data;
+
     }
 
     public function setAuthorizationDetails($user_token_details) {
@@ -43,6 +49,11 @@ class Request {
             $this->auth['user'] = (array) $user_token_details->data;
             $this->auth['token'] = (array) $user_token_details;
         }
+
+    }
+
+    private function writetolog() {
+
     }
 
 }

@@ -1,0 +1,46 @@
+<div class="card">
+    <div class="card-header card-header-text">
+        <h3 class="card-title">Stock Reports</h3>
+    </div>
+    <div class="card-content">
+
+
+        <div class="form-group row">
+            <label class="col-lg-2 col-form-label text-right">Product Name</label>
+            <div class="col-lg-2">
+                <input type="text" class="form-control" [(ngModel)]="product_name" name="product_name" required >
+            </div>
+            <label class="col-lg-2 col-form-label text-right">Product#</label>
+            <div class="col-lg-2">
+                <input type="text" class="form-control" [(ngModel)]="product_id" name="product_name" required >
+            </div>
+            <button class="btn btn-info" (click)="getStockReports(product_name, product_id)">Apply</button>
+        </div>
+
+
+
+
+        <ngx-datatable
+            [rows]="stocksReportList"
+            [columns]="stocksReportListColumns"
+            [loadingIndicator]="loadingIndicator"
+            [reorderable]="reorderable"
+            [limit]="10"
+            [columnMode]="'force'"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            (select)='onSelect($event)'
+            class="megamtechtable striped">
+        </ngx-datatable>
+
+    </div>
+</div>
+<!--
+<ng-template #actionTmpl let-row="row" let-value="value">
+    <button class="btn btn-success action-btn" [routerLink]="['/products/view', value]"><i class="zmdi zmdi-eye"></i></button>
+    <button class="btn btn-success action-btn" [routerLink]="['/products/edit', value]"><i class="zmdi zmdi-edit"></i></button>
+    <button type="button" class="btn btn-success action-btn" (click)="updateStatusByDialog(content, row)"><i class="fa fa-level-up"></i></button>
+</ng-template>-->
+
+

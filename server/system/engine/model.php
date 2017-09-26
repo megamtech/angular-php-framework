@@ -30,7 +30,12 @@ abstract class Model {
             $result = array();
             foreach ((array) $data as $key => $value) {
                 $result[$key] = $value;
-                $result[$key]['muid'] = (string) $value['_id'];
+                if (is_array($value['_id'])) {
+                    $result[$key]['muid'] = $value['_id'];
+                } else {
+                    $result[$key]['muid'] = (string) $value['_id'];
+                }
+
                 unset($result[$key]['_id']);
             }
         }
@@ -42,8 +47,8 @@ abstract class Model {
         $data['created_by'] = $created_by != '' ? $created_by : $this->request->auth['user']['muid'];
         $data['created_by_name'] = $this->request->auth['user']['fullname'];
         $data['created_at'] = '&current_time&';
-        $data['updated_by'] = $created_by != '' ? $created_by  : $this->request->auth['user']['muid'];
-        $data['updated_by_name'] =  $this->request->auth['user']['fullname'];
+        $data['updated_by'] = $created_by != '' ? $created_by : $this->request->auth['user']['muid'];
+        $data['updated_by_name'] = $this->request->auth['user']['fullname'];
         $data['updated_at'] = '&current_time&';
         return $data;
 
@@ -52,7 +57,7 @@ abstract class Model {
     public function addUpdatedMeta($data, $updated_by = '') {
 
         $data['updated_by'] = $updated_by != '' ? $updated_by : $this->request->auth['user']['muid'];
-        $data['updated_by_name'] =  $this->request->auth['user']['fullname'];
+        $data['updated_by_name'] = $this->request->auth['user']['fullname'];
         $data['updated_at'] = '&current_time&';
         return $data;
 

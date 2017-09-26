@@ -1,0 +1,719 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.css";
+@import "assets/css/material.min.css";
+@import "assets/css/wunder.css";
+@import "assets/css/demo.css";
+@import "~material-design-iconic-font/dist/css/material-design-iconic-font.min.css";
+@import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons";
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+@import '~sweetalert2/dist/sweetalert2.min.css';
+
+/* fallback */
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url('/src/assets/fonts/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2') format('woff2');
+}
+
+.megamtechtable-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+.nav-link{
+    cursor: pointer;
+}
+.s2x{
+    font-size:28px;
+}
+
+/*
+.table{
+    margin-bottom: 0;
+
+    tr:first-child td{
+        border-top: none;
+    }
+}*/
+
+/*=============================*/
+/*MegamTech Styles*/
+/*=============================*/
+/*Buttons*/
+.action-btn{
+    padding:10px;
+}
+/*Table styles*/
+
+.ngx-datatable.megamtechtable {
+    background: #FFF;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    line-height: 1.5em;
+    border-radius: 3px;
+}
+.ngx-datatable.megamtechtable .datatable-header{
+    background-color: #f5f5f5;
+    padding: 12px 8px;
+}
+.ngx-datatable.megamtechtable.striped .datatable-row-odd {
+    background: #eee;
+}
+.ngx-datatable.megamtechtable .datatable-row-group{
+    border-bottom: solid 1px #eee;
+}
+.ngx-datatable.megamtechtable.single-selection .datatable-body-row.active,
+.ngx-datatable.megamtechtable.single-selection .datatable-body-row.active .datatable-row-group, .ngx-datatable.megamtechtable.multi-selection .datatable-body-row.active,
+.ngx-datatable.megamtechtable.multi-selection .datatable-body-row.active .datatable-row-group, .ngx-datatable.megamtechtable.multi-click-selection .datatable-body-row.active,
+.ngx-datatable.megamtechtable.multi-click-selection .datatable-body-row.active .datatable-row-group {
+    background-color: #304FFE;
+    color: #FFF;
+}
+.ngx-datatable.megamtechtable.single-selection .datatable-body-row.active:hover,
+.ngx-datatable.megamtechtable.single-selection .datatable-body-row.active:hover .datatable-row-group, .ngx-datatable.megamtechtable.multi-selection .datatable-body-row.active:hover,
+.ngx-datatable.megamtechtable.multi-selection .datatable-body-row.active:hover .datatable-row-group, .ngx-datatable.megamtechtable.multi-click-selection .datatable-body-row.active:hover,
+.ngx-datatable.megamtechtable.multi-click-selection .datatable-body-row.active:hover .datatable-row-group {
+    background-color: #193AE4;
+    color: #FFF;
+}
+.ngx-datatable.megamtechtable.single-selection .datatable-body-row.active:focus,
+.ngx-datatable.megamtechtable.single-selection .datatable-body-row.active:focus .datatable-row-group, .ngx-datatable.megamtechtable.multi-selection .datatable-body-row.active:focus,
+.ngx-datatable.megamtechtable.multi-selection .datatable-body-row.active:focus .datatable-row-group, .ngx-datatable.megamtechtable.multi-click-selection .datatable-body-row.active:focus,
+.ngx-datatable.megamtechtable.multi-click-selection .datatable-body-row.active:focus .datatable-row-group {
+    background-color: #2041EF;
+    color: #FFF;
+}
+.ngx-datatable.megamtechtable:not(.cell-selection) .datatable-body-row:hover,
+.ngx-datatable.megamtechtable:not(.cell-selection) .datatable-body-row:hover .datatable-row-group {
+    background-color: #eee;
+    transition-property: background;
+    transition-duration: .3s;
+    transition-timing-function: linear;
+}
+.ngx-datatable.megamtechtable:not(.cell-selection) .datatable-body-row:focus,
+.ngx-datatable.megamtechtable:not(.cell-selection) .datatable-body-row:focus .datatable-row-group {
+    background-color: #ddd;
+}
+.ngx-datatable.megamtechtable.cell-selection .datatable-body-cell:hover,
+.ngx-datatable.megamtechtable.cell-selection .datatable-body-cell:hover .datatable-row-group {
+    background-color: #eee;
+    transition-property: background;
+    transition-duration: .3s;
+    transition-timing-function: linear;
+}
+.ngx-datatable.megamtechtable.cell-selection .datatable-body-cell:focus,
+.ngx-datatable.megamtechtable.cell-selection .datatable-body-cell:focus .datatable-row-group {
+    background-color: #ddd;
+}
+.ngx-datatable.megamtechtable.cell-selection .datatable-body-cell.active,
+.ngx-datatable.megamtechtable.cell-selection .datatable-body-cell.active .datatable-row-group {
+    background-color: #304FFE;
+    color: #FFF;
+}
+.ngx-datatable.megamtechtable.cell-selection .datatable-body-cell.active:hover,
+.ngx-datatable.megamtechtable.cell-selection .datatable-body-cell.active:hover .datatable-row-group {
+    background-color: #193AE4;
+    color: #FFF;
+}
+.ngx-datatable.megamtechtable.cell-selection .datatable-body-cell.active:focus,
+.ngx-datatable.megamtechtable.cell-selection .datatable-body-cell.active:focus .datatable-row-group {
+    background-color: #2041EF;
+    color: #FFF;
+}
+.ngx-datatable.megamtechtable .empty-row {
+    height: 50px;
+    text-align: left;
+    padding: .5rem 1.2rem;
+    vertical-align: top;
+    border-top: 0;
+}
+.ngx-datatable.megamtechtable .loading-row {
+    text-align: left;
+    padding: .5rem 1.2rem;
+    vertical-align: top;
+    border-top: 0; }
+.ngx-datatable.megamtechtable .datatable-header .datatable-row-left,
+.ngx-datatable.megamtechtable .datatable-body .datatable-row-left {
+    background-color: #FFF;
+    background-position: 100% 0;
+    background-repeat: repeat-y;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAABCAYAAAD5PA/NAAAAFklEQVQIHWPSkNeSBmJhTQVtbiDNCgASagIIuJX8OgAAAABJRU5ErkJggg==); }
+.ngx-datatable.megamtechtable .datatable-header .datatable-row-right,
+.ngx-datatable.megamtechtable .datatable-body .datatable-row-right {
+    background-position: 0 0;
+    background-color: #fff;
+    background-repeat: repeat-y;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAABCAYAAAD5PA/NAAAAFklEQVQI12PQkNdi1VTQ5gbSwkAsDQARLAIGtOSFUAAAAABJRU5ErkJggg==); }
+.ngx-datatable.megamtechtable .datatable-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12); }
+.ngx-datatable.megamtechtable .datatable-header .datatable-header-cell {
+    text-align: left;
+    padding: .5rem 1.2rem;
+    font-weight: bold;
+    color: #2196F3;
+    vertical-align: middle;
+}
+.ngx-datatable.megamtechtable .datatable-header .datatable-header-cell .datatable-header-cell-wrapper {
+    position: relative;
+}
+.ngx-datatable.megamtechtable .datatable-header .datatable-header-cell.longpress .draggable::after {
+    transition: transform 400ms ease, opacity 400ms ease;
+    opacity: .5;
+    transform: scale(1); }
+.ngx-datatable.megamtechtable .datatable-header .datatable-header-cell .draggable::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -30px 0 0 -30px;
+    height: 60px;
+    width: 60px;
+    background: #eee;
+    border-radius: 100%;
+    opacity: 1;
+    filter: none;
+    transform: scale(0);
+    z-index: 9999;
+    pointer-events: none; }
+.ngx-datatable.megamtechtable .datatable-header .datatable-header-cell.dragging .resize-handle {
+    border-right: none; }
+.ngx-datatable.megamtechtable .datatable-header .resize-handle {
+    border-right: solid 1px #eee; }
+.ngx-datatable.megamtechtable .datatable-body .datatable-row-detail {
+    background: #f5f5f5;
+    padding: 10px; }
+.ngx-datatable.megamtechtable .datatable-body .datatable-body-row .datatable-body-cell {
+    text-align: left;
+    padding: .5rem 1.2rem;
+    vertical-align: top;
+    border-top: 0;
+    -webkit-transition: width 0.3s ease;
+    transition: width 0.3s ease; }
+.ngx-datatable.megamtechtable .datatable-body .progress-linear {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 5px;
+    padding: 0;
+    margin: 0;
+    position: absolute; }
+.ngx-datatable.megamtechtable .datatable-body .progress-linear .container {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 5px;
+    -webkit-transform: translate(0, 0) scale(1, 1);
+    transform: translate(0, 0) scale(1, 1);
+    background-color: #aad1f9; }
+.ngx-datatable.megamtechtable .datatable-body .progress-linear .container .bar {
+    transition: all .2s linear;
+    -webkit-animation: query 0.8s infinite cubic-bezier(0.39, 0.575, 0.565, 1);
+    animation: query 0.8s infinite cubic-bezier(0.39, 0.575, 0.565, 1);
+    transition: -webkit-transform .2s linear;
+    transition: transform .2s linear;
+    background-color: #106cc8;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5px; }
+.ngx-datatable.megamtechtable .datatable-footer {
+    /*border-top: 1px solid rgba(0, 0, 0, 0.12);*/
+    font-size: 16px;
+}
+.ngx-datatable.megamtechtable .datatable-footer .page-count {
+    line-height: 50px;
+    height: 50px;
+    padding: 0 1.2rem;
+}
+.ngx-datatable.megamtechtable .datatable-footer .datatable-pager {
+    margin: 0 10px;
+}
+.ngx-datatable.megamtechtable .datatable-footer .datatable-pager li {
+    vertical-align: middle; }
+.ngx-datatable.megamtechtable .datatable-footer .datatable-pager li.disabled a {
+    color: rgba(0, 0, 0, 0.26) !important;
+    background-color: transparent !important; }
+.ngx-datatable.megamtechtable .datatable-footer .datatable-pager li.active a {
+    background-color: rgba(158, 158, 158, 0.2);
+    font-weight: bold; }
+.ngx-datatable.megamtechtable .datatable-footer .datatable-pager a {
+    height: 22px;
+    min-width: 24px;
+    line-height: 22px;
+    padding: 0 6px;
+    border-radius: 3px;
+    margin: 6px 3px;
+    text-align: center;
+    vertical-align: top;
+    color: rgba(0, 0, 0, 0.54);
+    text-decoration: none;
+    vertical-align: bottom; }
+.ngx-datatable.megamtechtable .datatable-footer .datatable-pager a:hover {
+    color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(158, 158, 158, 0.2); }
+.ngx-datatable.megamtechtable .datatable-footer .datatable-pager .datatable-icon-left,
+.ngx-datatable.megamtechtable .datatable-footer .datatable-pager .datatable-icon-skip,
+.ngx-datatable.megamtechtable .datatable-footer .datatable-pager .datatable-icon-right,
+.ngx-datatable.megamtechtable .datatable-footer .datatable-pager .datatable-icon-prev {
+    font-size: 20px;
+    line-height: 20px;
+    padding: 0 3px; }
+
+/*//Drop Zone*/
+@font-face {
+    /*font-family: dropify;*/
+    /*src: url(../fonts/dropify.eot);*/
+    /*src: url(../fonts/dropify.eot#iefix) format('embedded-opentype'),url(../fonts/dropify.woff) format('woff'),url(../fonts/dropify.ttf) format('truetype'),url(../fonts/dropify.svg#dropify) format('svg');*/
+    font-weight: 400;
+    font-style: normal
+}
+.dropify-font:before,.dropify-wrapper .dropify-message span.file-icon:before,.dropify-wrapper .dropify-preview .dropify-infos .dropify-infos-inner p.dropify-filename span.file-icon:before,[class*=" dropify-font-"]:before,[class^=dropify-font-]:before {
+    font-family: dropify;
+    font-style: normal;
+    font-weight: 400;
+    speak: none;
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-left: .2em;
+    margin-right: .2em;
+    text-align: center;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1em}
+.dropify-wrapper,.dropify-wrapper .dropify-clear {
+    font-family: Roboto,"Helvetica Neue",Helvetica,Arial}
+.dropify-font-upload:before,.dropify-wrapper .dropify-message span.file-icon:before {
+    content: '\e800'}
+.dropify-font-file:before {
+    content: '\e801'}
+.dropify-wrapper {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    height: 200px;
+    padding: 5px 10px;
+    font-size: 14px;
+    line-height: 22px;
+    color: #777;
+    background-color: #FFF;
+    background-image: none;
+    text-align: center;
+    border: 2px solid #E5E5E5}
+.dropify-wrapper:hover {
+    background-size: 30px 30px;
+    background-image: -webkit-linear-gradient(135deg,#F6F6F6 25%,transparent 25%,transparent 50%,#F6F6F6 50%,#F6F6F6 75%,transparent 75%,transparent);
+    background-image: linear-gradient(-45deg,#F6F6F6 25%,transparent 25%,transparent 50%,#F6F6F6 50%,#F6F6F6 75%,transparent 75%,transparent);
+    -webkit-animation: stripes 2s linear infinite;
+    animation: stripes 2s linear infinite}
+.dropify-wrapper.has-error .dropify-message .dropify-error,.dropify-wrapper.has-preview .dropify-clear {
+    display: block}
+.dropify-wrapper.disabled input {
+    cursor: not-allowed}
+.dropify-wrapper.disabled:hover {
+    background-image: none;
+    -webkit-animation: none;
+    animation: none}
+.dropify-wrapper.disabled .dropify-message {
+    opacity: .5;
+    text-decoration: line-through}
+.dropify-wrapper.disabled .dropify-infos-message {
+    display: none}
+.dropify-wrapper input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 5}
+.dropify-wrapper .dropify-message {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%)}
+.dropify-wrapper .dropify-message span.file-icon {
+    font-size: 50px;
+    color: #CCC}
+.dropify-wrapper .dropify-message p {
+    margin: 5px 0 0}
+.dropify-wrapper .dropify-message p.dropify-error {
+    color: #F34141;
+    font-weight: 700;
+    display: none}
+.dropify-wrapper .dropify-clear {
+    display: none;
+    position: absolute;
+    opacity: 0;
+    z-index: 7;
+    top: 10px;
+    right: 10px;
+    background: 0 0;
+    border: 2px solid #FFF;
+    text-transform: uppercase;
+    font-size: 11px;
+    padding: 4px 8px;
+    font-weight: 700;
+    color: #FFF;
+    -webkit-transition: all .15s linear;
+    transition: all .15s linear}
+.dropify-wrapper .dropify-clear:hover {
+    background: rgba(255,255,255,.2)}
+.dropify-wrapper .dropify-preview {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    background-color: #FFF;
+    padding: 5px;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    text-align: center}
+.dropify-wrapper .dropify-preview .dropify-render img {
+    top: 50%;
+    -webkit-transform: translate(0,-50%);
+    -ms-transform: translate(0,-50%);
+    transform: translate(0,-50%);
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+    background-color: #FFF;
+    -webkit-transition: border-color .15s linear;
+    transition: border-color .15s linear}
+.dropify-wrapper .dropify-preview .dropify-render i {
+    font-size: 70px;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    position: absolute;
+    color: #777}
+.dropify-wrapper .dropify-preview .dropify-render .dropify-extension {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    margin-top: 10px;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: -.03em;
+    font-size: 13px;
+    width: 42px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis}
+.dropify-wrapper .dropify-preview .dropify-infos {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    background: rgba(0,0,0,.7);
+    opacity: 0;
+    -webkit-transition: opacity .15s linear;
+    transition: opacity .15s linear}
+.dropify-wrapper .dropify-preview .dropify-infos .dropify-infos-inner {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(0,-40%);
+    -ms-transform: translate(0,-40%);
+    transform: translate(0,-40%);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    width: 100%;
+    padding: 0 20px;
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease}
+.dropify-wrapper .dropify-preview .dropify-infos .dropify-infos-inner p {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #FFF;
+    text-align: center;
+    line-height: 25px;
+    font-weight: 700}
+.dropify-wrapper .dropify-preview .dropify-infos .dropify-infos-inner p.dropify-filename span.file-icon {
+    margin-right: 2px}
+.dropify-wrapper .dropify-preview .dropify-infos .dropify-infos-inner p.dropify-infos-message {
+    margin-top: 15px;
+    padding-top: 15px;
+    font-size: 12px;
+    position: relative;
+    opacity: .5}
+.dropify-wrapper .dropify-preview .dropify-infos .dropify-infos-inner p.dropify-infos-message::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    -webkit-transform: translate(-50%,0);
+    -ms-transform: translate(-50%,0);
+    transform: translate(-50%,0);
+    background: #FFF;
+    width: 30px;
+    height: 2px}
+.dropify-wrapper:hover .dropify-clear,.dropify-wrapper:hover .dropify-preview .dropify-infos {
+    opacity: 1}
+.dropify-wrapper:hover .dropify-preview .dropify-infos .dropify-infos-inner {
+    margin-top: -5px}
+.dropify-wrapper.touch-fallback {
+    height: auto!important}
+.dropify-wrapper.touch-fallback:hover {
+    background-image: none;
+    -webkit-animation: none;
+    animation: none}
+.dropify-wrapper.touch-fallback .dropify-preview {
+    position: relative;
+    padding: 0}
+.dropify-wrapper.touch-fallback .dropify-preview .dropify-render {
+    display: block;
+    position: relative}
+.dropify-wrapper.touch-fallback .dropify-preview .dropify-infos .dropify-infos-inner p.dropify-infos-message::before,.dropify-wrapper.touch-fallback.has-preview .dropify-message {
+    display: none}
+.dropify-wrapper.touch-fallback .dropify-preview .dropify-render .dropify-font-file {
+    position: relative;
+    -webkit-transform: translate(0,0);
+    -ms-transform: translate(0,0);
+    transform: translate(0,0);
+    top: 0;
+    left: 0}
+.dropify-wrapper.touch-fallback .dropify-preview .dropify-render .dropify-font-file::before {
+    margin-top: 30px;
+    margin-bottom: 30px}
+.dropify-wrapper.touch-fallback .dropify-preview .dropify-render img {
+    position: relative;
+    -webkit-transform: translate(0,0);
+    -ms-transform: translate(0,0);
+    transform: translate(0,0)}
+.dropify-wrapper.touch-fallback .dropify-preview .dropify-infos {
+    position: relative;
+    opacity: 1;
+    background: 0 0}
+.dropify-wrapper.touch-fallback .dropify-preview .dropify-infos .dropify-infos-inner {
+    position: relative;
+    top: 0;
+    -webkit-transform: translate(0,0);
+    -ms-transform: translate(0,0);
+    transform: translate(0,0);
+    padding: 5px 90px 5px 0}
+.dropify-wrapper.touch-fallback .dropify-preview .dropify-infos .dropify-infos-inner p {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #777;
+    text-align: left;
+    line-height: 25px}
+.dropify-wrapper.touch-fallback .dropify-preview .dropify-infos .dropify-infos-inner p.dropify-filename {
+    font-weight: 700}
+.dropify-wrapper.touch-fallback .dropify-preview .dropify-infos .dropify-infos-inner p.dropify-infos-message {
+    margin-top: 0;
+    padding-top: 0;
+    font-size: 11px;
+    position: relative;
+    opacity: 1}
+.dropify-wrapper.touch-fallback .dropify-message {
+    -webkit-transform: translate(0,0);
+    -ms-transform: translate(0,0);
+    transform: translate(0,0);
+    padding: 40px 0}
+.dropify-wrapper.touch-fallback .dropify-clear {
+    top: auto;
+    bottom: 23px;
+    opacity: 1;
+    border-color: rgba(119,119,119,.7);
+    color: #777}
+.dropify-wrapper.touch-fallback:hover .dropify-preview .dropify-infos .dropify-infos-inner {
+    margin-top: 0}
+@-webkit-keyframes stripes {
+    from {
+        background-position: 0 0}
+    to {
+        background-position: 60px 30px}
+}
+@keyframes stripes {
+    from {
+        background-position: 0 0}
+    to {
+        background-position: 60px 30px}
+}
+/*//DatePicker*/
+.ngb-dp-day > .btn-secondary {
+    background-color:white;
+    color:black;
+}
+select[_ngcontent-c9] {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.25;
+    height: inherit;
+    width: 50% !important;
+}
+/*NgX-Uploader*/
+
+
+
+h1 {
+    color: #65619c;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 5px 0
+}
+.drop-container {
+    border: 3px dashed #ededed;
+    width: 100%;
+    padding: 50px 0;
+    border-radius: 10px;
+    margin: 20px 0 0
+}
+.drop-container h1 {
+    width: 100%;
+    display: block;
+    color: #65619c;
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center
+}
+.drop-container p {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+    color: #cbccd8;
+    font-weight: 700
+}
+.drop-container p span {
+    display: block;
+    float: left
+}
+.drop-container.is-drop-over {
+    background: #4d6182
+}
+.drop-container .upload-button {
+    display: block;
+    float: left;
+    text-decoration: underline;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-left: 4px
+}
+.drop-container .upload-button input {
+    display: none
+}
+.uploads .upload-item {
+    margin: 20px 0
+}
+.uploads .upload-item .upload-item-top {
+    font-size: 12px;
+    font-weight: 700;
+    display: inline-block;
+    width: 100%;
+    height: 20px;
+    position: relative
+}
+.uploads .upload-item .upload-item-top .filename {
+    color: #65619c;
+    display: block;
+    float: left
+}
+.uploads .upload-item .upload-item-top .progress-data {
+    color: #a29fc4;
+    display: block;
+    float: right;
+    margin-right: 30px
+}
+.uploads .upload-item .upload-item-top .x {
+    display: block;
+    width: 16px;
+    height: 16px;
+    color: #c11161;
+    font-size: 16px;
+    position: absolute;
+    right: 0;
+    top: -5px;
+    cursor: pointer
+}
+.uploads .upload-item .progress-bar-container {
+    width: 50%;
+    height: 12px;
+    border-radius: 2px;
+    background: #d7d8d7;
+    margin: 3px 0;
+    position: relative;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+.uploads .upload-item .progress-bar-container .bar {
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+    border-radius: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 12px;
+    background: #65619c
+}
+.uploads .upload-item .progress-bar-container .bar.green {
+    background: #93e777
+}
+.progress {
+    height: 12px;
+    border-radius: 0;
+    box-shadow: none;
+    background: #DDDDDD;
+    margin-bottom: 20px;
+}
+.progress-bar{
+    height: 1em;
+}
+
+.navbar .custom-select, .navbar .form-control{
+    opacity: 1;
+}
+.nav-item .nav {
+    background-color: #efefef;
+}

@@ -1,0 +1,50 @@
+<nav class="navbar navbar-primary navbar-transparent navbar-absolute">
+    <div class="navbar-header d-flex">
+        <a class="navbar-brand" href="../index.html"> Warehouse Management System </a>
+    </div>
+</nav>
+<div class="wrapper wrapper-full-page">
+    <div class="full-page login-page"  data-color="blue">
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-md-7 mx-auto">
+
+                        <form (ngSubmit)="login(loginForm.value)" #loginForm="ngForm">
+                            <div class="card card-login">
+                                <div class="card-header text-center">
+                                    <h4 class="card-title">Login</h4>
+                                </div>
+                                <div class="card-content" >
+                                    <ngb-alert *ngIf="error" type="danger" (close)="error = null">{{error}}</ngb-alert>
+
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="material-icons">face</i>
+                                            </div>
+                                            <input type="text" [(ngModel)]="username" name="username" class="form-control" placeholder="Username">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="material-icons">lock_outline</i>
+                                            </div>
+                                            <input type="password" class="form-control" name="password" [(ngModel)]="password" placeholder="Password">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-wd btn-primary btn-lg">Sign In</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>

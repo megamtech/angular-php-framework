@@ -6,7 +6,7 @@ class hUploader {
         if (count($files) > 0) {
             $upload_directory = AppUploads;
             if ($sub_directory != '') {
-                $upload_directory.= $sub_directory;
+                $upload_directory .= $sub_directory;
             }
             if (is_array($multiple_upload)) {
                 foreach ($files['name'][$multiple_upload['index']][$multiple_upload['field']] as $key => $value) {
@@ -17,16 +17,17 @@ class hUploader {
                     $formatted_files[$key]['tmp_name'] = $files['tmp_name'][$multiple_upload['index']][$multiple_upload['field']][$key];
                 }
             } else {
-                foreach ($files['name'] as $key => $value) {
-                    $formatted_files[$key]['name'] = $value;
-                    $formatted_files[$key]['type'] = $files['type'][$key];
-                    $formatted_files[$key]['error'] = $files['error'][$key];
-                    $formatted_files[$key]['size'] = $files['size'][$key];
-                    $formatted_files[$key]['tmp_name'] = $files['tmp_name'][$key];
-                    
-                }
+//                foreach ($files['name'] as $key => $value) {
+//                    $formatted_files[$key]['name'] = $value;
+//                    $formatted_files[$key]['type'] = $files['type'][$key];
+//                    $formatted_files[$key]['error'] = $files['error'][$key];
+//                    $formatted_files[$key]['size'] = $files['size'][$key];
+//                    $formatted_files[$key]['tmp_name'] = $files['tmp_name'][$key];
+//
+//                }
+                $formatted_files[0] = $files;
             }
-            
+
             foreach ($formatted_files as $key => $current_file) {
 
                 $current_file['src_file_name'] = $current_file['name'];
@@ -51,7 +52,6 @@ class hUploader {
                 } else {
                     $upload_result[] = $handle->error;
                 }
-                
             }
             return $upload_result;
         } else {

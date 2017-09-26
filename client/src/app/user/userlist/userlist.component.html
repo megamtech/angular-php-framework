@@ -1,0 +1,27 @@
+<div class="card">
+    <div class="card-header card-header-text">
+        <h3 class="card-title">User List</h3>
+    </div>
+    <button class="btn btn-success pull-right" routerLink="/user/add">Add User</button>
+    <div class="card-content">
+	<div>
+	    <ngx-datatable
+		[rows]="userList"
+		[columns]="userListColumns" 
+		[loadingIndicator]="loadingIndicator"
+		[reorderable]="reorderable"
+		[limit]="2"
+		[columnMode]="'force'"
+		[headerHeight]="50"
+		[footerHeight]="50"
+		[rowHeight]="'auto'"
+		class="megamtechtable striped">
+	    </ngx-datatable>
+	</div>
+    </div>
+</div>
+<ng-template #actionTmpl let-row="row" let-value="value">
+    <button class="btn btn-info action-btn" [routerLink]="['/viewuser', value]"><i class="zmdi zmdi-eye"></i></button>
+    <button class="btn btn-primary action-btn" [routerLink]="['/user/edit', value]"><i class="zmdi zmdi-edit"></i></button>
+    <button class="btn btn-danger action-btn" (click)="deleteUser(value)"><i class="zmdi zmdi-delete"></i></button>
+</ng-template>

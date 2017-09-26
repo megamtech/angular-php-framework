@@ -1,0 +1,23 @@
+<div class="wrapper" *ngIf="isAuthenticated()" >
+    <loading-bar color="#FF0000" [height]="3" [animationTime]="0.3" [runInterval]="100" [progress]="0"></loading-bar>
+
+    <app-sidebar></app-sidebar>
+    <div class="main-panel">
+
+        <app-header></app-header>
+        <div class="content">
+            <div class="loading-overlay" *ngIf="loading">
+                <!-- show something fancy here, here with Angular 2 Material's loading bar or circle -->
+                <!--<md-progress-bar mode="indeterminate"></md-progress-bar>-->
+                <ngb-progressbar type="info" [value]="50"></ngb-progressbar>
+            </div>
+            <div class="container-fluid">
+                <!--<router-outlet></router-outlet>-->
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>
+
+<router-outlet *ngIf="!isAuthenticated()"></router-outlet>

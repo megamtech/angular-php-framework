@@ -1,12 +1,8 @@
 <?php
 
-/*
- * @property string $id
- * @property Loader $load
- * @property string $output
- * @property mUsers $mUsers
+/**
+ *
  */
-
 class controller {
 
     protected $registry;
@@ -44,6 +40,11 @@ class controller {
 
     public function getCurrentTime() {
         return '&current_time&';
+
+    }
+
+    public function checkClientId($client_id) {
+        return ($client_id != '');
 
     }
 

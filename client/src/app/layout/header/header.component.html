@@ -1,0 +1,27 @@
+<nav class="navbar navbar-toggleable-md navbar-default navbar-absolute navbar-inverse" data-topbar-color="blue">
+    <div class="navbar-minimize">
+        <button id="minimizeSidebar" (click)="sideBarCollapse();" class="btn btn-round btn-white btn-fill btn-just-icon">
+            <i class="material-icons visible-on-sidebar-regular f-26">keyboard_arrow_left</i>
+            <i class="material-icons visible-on-sidebar-mini f-26">keyboard_arrow_right</i>
+        </button>
+    </div>
+    <div class="navbar-header d-flex">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href=""> Dashboard </a>
+        <!--        <a class="navbar-brand" href="" style="font-size: 18px;">Pending Orders({{pending_orders_count}})</a>
+                <a class="navbar-brand" href="" style="font-size: 18px;">Shipped Orders({{shipped_orders_count}})</a>-->
+
+
+        <select [(ngModel)]="client_id" class="form-control"  *ngIf="clientList!=false || role_id==1" (change)="changeClientByDialog(client_id)" name="client" style="color: black;background-color: #fff">
+            <option *ngFor="let client of clientList"  [ngValue]="client.muid">{{client.company}}</option>
+        </select>
+        <span class="navbar-brand">Hello {{fullname}}</span>
+        <a  (click)="logout()" class="nav-link" >
+            <i class="zmdi zmdi-power s2x" ></i>
+        </a>
+
+    </div>
+
+</nav>

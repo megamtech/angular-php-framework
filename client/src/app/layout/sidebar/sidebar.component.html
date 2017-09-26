@@ -1,0 +1,117 @@
+<nav class="sidebar" id="sidebar" data-background-color="white">
+    <div class="logo">
+        <a href="#" class="simple-text">
+            WMS
+        </a>
+    </div>
+    <div class="logo logo-mini">
+        <a href="#" class="simple-text">
+            W
+        </a>
+    </div>
+    <div class="sidebar-wrapper">
+        <ul class="nav flex-column">
+            <li class="nav-item" *ngIf="checkmenuPermission(5)">
+                <a class="nav-link" (click)="is1Collapsed = !is1Collapsed" [attr.aria-expanded]="!is1Collapsed" >
+                    <i class="zmdi zmdi-labels"></i>
+                    <p>
+                        Master
+                        <i class="material-icons" *ngIf="is1Collapsed">arrow_drop_down</i>
+                        <i class="material-icons" *ngIf="!is1Collapsed">arrow_drop_up</i>
+                    </p>
+                </a>
+                <div class="" [ngbCollapse]="is1Collapsed">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/userlist"><i class="zmdi zmdi-accounts"></i>
+                                <p>User</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  routerLink="/clientlist"><i class="zmdi zmdi-account-box"></i><p>Client</p></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/products/viewall"><i class="zmdi zmdi-present-to-all"></i><p>Products</p></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/uom/viewall"><i class="zmdi zmdi-ruler"></i><p>UOM</p></a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item" *ngIf="checkmenuPermission(15)">
+                <a class="nav-link" (click)="is2Collapsed = !is2Collapsed" [attr.aria-expanded]="!is2Collapsed" >
+                    <i class="zmdi zmdi-upload"></i>
+                    <p>
+                        Upload CSV
+                        <i class="material-icons" *ngIf="is2Collapsed">arrow_drop_down</i>
+                        <i class="material-icons" *ngIf="!is2Collapsed">arrow_drop_up</i>
+                    </p>
+                </a>
+                <div class="" [ngbCollapse]="is2Collapsed"  >
+                    <ul class="nav flex-column">
+                        <li class="nav-item" *ngIf="checkmenuPermission(20)">
+                            <a class="nav-link" routerLink="/stocks"  routerLinkActive="active"><i class="zmdi zmdi-truck"></i>
+                                <p>    Stock</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" *ngIf="checkmenuPermission(25)">
+                            <a class="nav-link" routerLink="/salesorder/csv_upload"  routerLinkActive="active"><i class="zmdi zmdi-money-box"></i>
+                                <p>Sales order</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item" *ngIf="checkmenuPermission(30)">
+                <a class="nav-link " routerLink="/salesorder/viewall"  routerLinkActive="active">
+                    <i class="zmdi zmdi-shopping-cart-add"></i>
+                    <p>
+                        Sales Order
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="checkmenuPermission(35)">
+                <a class="nav-link " routerLink="/receive_stocks"  routerLinkActive="active">
+                    <i class="fa fa-handshake-o"></i>
+                    <p>
+                        Accept Stocks
+                    </p>
+                </a>
+            </li>
+
+            <li class="nav-item" *ngIf="checkmenuPermission(40)">
+                <a class="nav-link" (click)="is3Collapsed = !is3Collapsed" [attr.aria-expanded]="!is3Collapsed" >
+                    <i class="zmdi zmdi-chart"></i>
+                    <p>
+                        Reports
+                        <i class="material-icons" *ngIf="!is3Collapsed">arrow_drop_down</i>
+                        <i class="material-icons" *ngIf="is3Collapsed">arrow_drop_up</i>
+                    </p>
+                </a>
+                <div class="" [ngbCollapse]="!is3Collapsed">
+                    <ul class="nav flex-column">
+                        <li class="nav-item" *ngIf="checkmenuPermission(20)">
+                            <a class="nav-link " routerLink="/reports/stocks"  routerLinkActive="active">
+                                <i class="zmdi zmdi-chart"></i>
+                                <p>
+                                    Stock Reports
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item" *ngIf="checkmenuPermission(45)">
+                <a class="nav-link " routerLink="/sales_order/create"  routerLinkActive="active">
+                    <i class="zmdi zmdi-money-box"></i>
+                    <p>
+                        Create Sales Order
+                    </p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

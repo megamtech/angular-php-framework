@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of validation
  *
@@ -13,7 +7,7 @@
  */
 
 /**
- * 
+ *
   1.required - Ensures the specified key value exists and is not empty
   2.valid_email - Checks for a valid email address
   3.max_len,n - Checks key value length, makes sure it's not longer than the specified length. n = length parameter.
@@ -53,14 +47,14 @@ class Validation extends GUMP {
     public $is_valid;
 
     function __construct() {
-        
+
     }
 
-    function validate($data, $rules, $group_rules, $key_match = array()) {
+    function mValidate($data, $rules, $group_rules, $key_match = array()) {
 
         if (is_array($rules)) {
             foreach ($rules as $columnname) {
-                //Add your Validation Rules here 
+                //Add your Validation Rules here
                 $data_columnname = $columnname;
 
                 $db_columnname = $key_match[$columnname] ? $key_match[$columnname] : $columnname;
